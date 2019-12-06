@@ -1,0 +1,78 @@
+{
+    "users": [
+        {
+            "firstName" : "Christopher",
+            "lastName" : "Wong",
+            "userID" : "cwong51799",
+            "wireframes" : [
+                    {
+                        "name": "Wireframe Test 1",
+                        "dimensionX": 500,
+                        "dimensionY": 500,
+                        "controls" : [
+                            {
+                                "key": 0,
+                                "positionX": 50,
+                                "positionY": 50,
+                                "size" : 30,
+                                "text" : "This assignment gives me anxiety",
+                                "textSize" : 12,
+                                "textColor" : "black",
+                                "borderColor" : "white",
+                                "borderThickness" : 5,
+                                "borderRadius" : 2,
+                                "type" : "label"
+                            },
+                            {
+                                "key": 1,
+                                "positionX": 50,
+                                "positionY": 90,
+                                "size" : 30,
+                                "text" : "I'm the second control",
+                                "textSize" : 12,
+                                "textColor" : "black",
+                                "borderColor" : "white",
+                                "borderThickness" : 5,
+                                "borderRadius" : 2,
+                                "type" : "label"
+                            },
+                            {
+                                "key": 2,
+                                "positionX": 500,
+                                "positionY": 200,
+                                "size" : 30,
+                                "text" : "I'm the third control",
+                                "textSize" : 12,
+                                "textColor" : "black",
+                                "borderColor" : "white",
+                                "borderThickness" : 5,
+                                "borderRadius" : 2,
+                                "type" : "label"
+                            }
+                        ]
+                    },
+                    {
+                        
+                        "name": "Wireframe Test 2",
+                        "dimensionX": 300,
+                        "dimensionY": 300,
+                        "controls" : [
+                            {
+                                "key": 0,
+                                "positionX": 150,
+                                "positionY": 150,
+                                "size" : 75,
+                                "text" : "I'm a wireframe with one big control!",
+                                "textSize" : 12,
+                                "textColor" : "blue",
+                                "borderColor" : "red",
+                                "borderThickness" : 5,
+                                "borderRadius" : 2,
+                                "type" : "label"
+                            }
+                        ]
+                    }
+                ]
+        }
+    ]
+}

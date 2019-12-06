@@ -1,0 +1,6 @@
+.testButton{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 20px;
+}

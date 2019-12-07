@@ -17,8 +17,8 @@
                                 "size" : 30,
                                 "text" : "This assignment gives me anxiety",
                                 "textSize" : 12,
-                                "textColor" : "black",
-                                "borderColor" : "white",
+                                "backgroundColor" : "#56a986",
+                                "borderColor" : "#930af5",
                                 "borderThickness" : 5,
                                 "borderRadius" : 2,
                                 "type" : "label"
@@ -30,8 +30,8 @@
                                 "size" : 30,
                                 "text" : "I'm the second control",
                                 "textSize" : 12,
-                                "textColor" : "black",
-                                "borderColor" : "white",
+                                "backgroundColor" : "#4307f8",
+                                "borderColor" : "#21bdde",
                                 "borderThickness" : 5,
                                 "borderRadius" : 2,
                                 "type" : "label"
@@ -43,8 +43,8 @@
                                 "size" : 30,
                                 "text" : "I'm the third control",
                                 "textSize" : 12,
-                                "textColor" : "black",
-                                "borderColor" : "white",
+                                "backgroundColor" : "#8fbb44",
+                                "borderColor" : "#14ebae",
                                 "borderThickness" : 5,
                                 "borderRadius" : 2,
                                 "type" : "label"
@@ -64,8 +64,8 @@
                                 "size" : 75,
                                 "text" : "I'm a wireframe with one big control!",
                                 "textSize" : 12,
-                                "textColor" : "blue",
-                                "borderColor" : "red",
+                                "backgroundColor" : "#d12e5b",
+                                "borderColor" : "#1100ff",
                                 "borderThickness" : 5,
                                 "borderRadius" : 2,
                                 "type" : "label"

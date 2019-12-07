@@ -79,6 +79,21 @@
     background-color: white;
 }
 
+#wireframeZone{
+    border: solid black 4px;
+    border-radius: 5px;
+}
+
+
+#editArea{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    width: 100%;
+    top: 7%;
+}
+
 #containerControlOption, #labelControlOption, #buttonControlOption {
     padding-bottom: 10%;
 }

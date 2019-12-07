@@ -73,7 +73,7 @@ export default class PropertyEditor extends Component {
         })
     }
     render() {
-        console.log("PropertyEditor Render called.");
+        //console.log("PropertyEditor Render called.");
         const control = this.props.controlToEdit;
         const controlSelected = (this.props.controlToEdit != null);
         return (

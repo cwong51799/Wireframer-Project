@@ -28,12 +28,15 @@ export default class EditScreen extends Component {
     }
     // Currently just taking the first one that I want. Testing.
     useThisData(data){
-        console.log(data);
         this.setState({
             wireframe :  data.wireframes[0]
         });
     }
-
+    saveData(){
+        // UPDATE IN THE FIRESTORE AS WELL
+        const firestore = getFirestore();
+        
+    }
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?
     setControlBeingEdited = (key) =>{
@@ -53,7 +56,7 @@ export default class EditScreen extends Component {
     // The editAreaDiv needs to know the entire wireframe
     // The controlSelection doesn't need to know shit
     render() {
-        console.log("EditScreen Render called.");
+        //console.log("EditScreen Render called.");
         return (
             <div id = "editScreenParent">
                 <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection/></div>

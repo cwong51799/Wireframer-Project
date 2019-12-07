@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Button} from 'react-materialize'
+import Draggable from 'react-draggable'
 export default class ButtonControl extends Component {
     state = {
         control : this.props.control
@@ -15,20 +16,18 @@ export default class ButtonControl extends Component {
             fontSize : control.textSize +"px",
         }
         return (
-            <div style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}><Button className = "buttonControl"
-                node="a"
-                small
-                style={{
-                backgroundColor : control.backgroundColor,
-                borderWidth : control.borderThickness + "px " + control.borderThickness+"px",
-                borderRadius : control.borderRadius +"px",
-                borderStyle: "solid",
-                borderColor: control.borderColor,
-                }}
-                waves="light"
-            > {control.text}
-            </Button>
-            </div>
+            <Draggable
+            bounds = "parent"
+            onStop={this.handleStop}
+            >
+                <Button className = "buttonControl"
+                    node="a"
+                    small
+                    style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}
+                    waves="light"
+                > {control.text}
+                </Button>
+            </Draggable>
         )
     }
 }

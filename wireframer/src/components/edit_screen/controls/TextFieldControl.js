@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {TextInput} from 'react-materialize'
+import Draggable from 'react-draggable'
+
 export default class TextFieldControl extends Component {
     state = {
         control : this.props.control
@@ -21,9 +23,14 @@ export default class TextFieldControl extends Component {
             fontSize : control.textSize +"px",
         }
         return (
-            <div className = "thinner" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
-            <TextInput label={control.text}  disabled />
-            </div>
+            <Draggable
+            bounds = "parent"
+            onStop={this.handleStop}
+            >   
+                <div className = "thinner" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
+                <TextInput label={control.text}  disabled />
+                </div>
+            </Draggable>
         )
     }
 }

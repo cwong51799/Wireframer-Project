@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Draggable from 'react-draggable'
 
 export default class LabelControl extends Component {
     constructor(props){
@@ -9,7 +10,6 @@ export default class LabelControl extends Component {
     }
     render() {
         const control = this.props.control;
-        console.log(control);
         const style = {
             backgroundColor : control.backgroundColor,
             borderWidth : control.borderThickness + "px " + control.borderThickness+"px",
@@ -24,9 +24,14 @@ export default class LabelControl extends Component {
             fontSize : control.textSize +"px",
         }
         return (
-            <a className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
+            <Draggable
+                bounds = "parent"
+                onStop={this.handleStop}
+            >
+                <div className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
                 {control.text}
-            </a>
+            </div>
+            </Draggable> 
         )
     }
 }

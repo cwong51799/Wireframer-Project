@@ -10,7 +10,7 @@ export default class EditArea extends Component {
     }
     // How can I get this area to be centered no matter what?
     render() {
-        console.log("EditArea Render called.");
+        //console.log("EditArea Render called.");
         const wireframe = this.props.wireframe;
         const wireframeAttached = (wireframe != null);
         const setControlBeingEdited = this.props.setControlBeingEdited;

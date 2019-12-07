@@ -17,35 +17,63 @@ export default class PropertyEditor extends Component {
         if (this.props.controlToEdit == undefined){
             return;
         }
+        console.log(e)
         const {target} = e;
         const control = this.props.controlToEdit;
         const fireStore = getFirestore();
         if (target.id === "controlText"){
             control.text = target.value;
+            this.props.handlePropertyChange();
             this.setState({
                 control: control
             })
         }
         if (target.id === "controlTextSize"){
             control.textSize = target.value;
+            this.props.handlePropertyChange();
             this.setState({
                 control: control
             })
         }
         if (target.id === "controlBorderThickness"){
             control.borderThickness = target.value;
+            this.props.handlePropertyChange();
             this.setState({
                 control: control
             })
         }
         if (target.id === "controlBorderRadius"){
             control.borderRadius= target.value;
+            this.props.handlePropertyChange();
             this.setState({
                 control: control
             })
         }
     }
+    handleBackgroundColorChange = (color, e) =>{
+        if (this.props.controlToEdit == undefined){
+            return;
+        }
+        const control = this.props.controlToEdit;
+        control.backgroundColor = color.hex;
+        this.props.handlePropertyChange();
+        this.setState({
+            control : control
+        })
+    }
+    handleBorderColorChange = (color, e) =>{
+        if (this.props.controlToEdit == undefined){
+            return;
+        }
+        const control = this.props.controlToEdit;
+        control.borderColor = color.hex;
+        this.props.handlePropertyChange();
+        this.setState({
+            control : control
+        })
+    }
     render() {
+        console.log("PropertyEditor Render called.");
         const control = this.props.controlToEdit;
         const controlSelected = (this.props.controlToEdit != null);
         return (
@@ -58,11 +86,11 @@ export default class PropertyEditor extends Component {
                 </div>
                 <div className ="property">
                 Background:
-                <SliderPicker color = {controlSelected ? control.backgroundColor : "white"}/>
+                <SliderPicker color = {controlSelected ? control.backgroundColor : "white"} id = "backgroundColor" onChange={this.handleBackgroundColorChange}/>
                 </div>
                 <div className ="property">
                 Border Color:
-                <SliderPicker color = {controlSelected ? control.backorderColor : "black"}/>
+                <SliderPicker color = {controlSelected ? control.borderColor : "black"} id = "borderColor" onChange={this.handleBorderColorChange}/>
                 </div>
                 <div className ="property">
                 Border Thickness: 

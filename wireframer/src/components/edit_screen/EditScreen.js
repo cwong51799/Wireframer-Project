@@ -7,7 +7,8 @@ import EditArea from './EditArea';
 
 export default class EditScreen extends Component {
     state = {
-        wireframe : null
+        wireframe : null,
+        controlBeingEdited : null
     }
     // Loads the data in the wireframe, this is hard hard coded just for testing for now
     loadData(){
@@ -33,20 +34,36 @@ export default class EditScreen extends Component {
         });
     }
 
-
+    // Takes in the control's key, which should match the index of the array
+    // This key thing depends on the key matching the index of the array, is that reliable?
+    setControlBeingEdited = (key) =>{
+        let controlBeingEdited = this.state.wireframe.controls[key];
+        this.setState({
+            ...this.state,
+            controlBeingEdited : controlBeingEdited
+        })
+    }
+    handlePropertyChange = (e)=>{
+        // Reload this on property change, might be inefficient. Look for a better way.
+        this.setState({
+            
+        })
+    }
     // The PropertyEditor only needs to know what control it's working on.
     // The editAreaDiv needs to know the entire wireframe
     // The controlSelection doesn't need to know shit
     render() {
+        console.log("EditScreen Render called.");
         return (
             <div id = "editScreenParent">
                 <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection/></div>
-                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe}/></div>
+                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} setControlBeingEdited = {this.setControlBeingEdited}/></div>
                 <div id = "propertyEditorDiv" className ="editScreenDiv">
                     {this.state.wireframe == null ? <PropertyEditor
                     /> :
                     <PropertyEditor
-                        controlToEdit = {this.state.wireframe.controls[0]}
+                        controlToEdit = {this.state.controlBeingEdited}
+                        handlePropertyChange = {this.handlePropertyChange}
                     />
                     }
                 </div>

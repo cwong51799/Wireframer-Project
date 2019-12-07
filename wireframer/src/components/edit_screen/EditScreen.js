@@ -13,7 +13,7 @@ export default class EditScreen extends Component {
     // Loads the data in the wireframe, this is hard hard coded just for testing for now
     loadData(){
         const firestore = getFirestore();
-        let docRef = firestore.collection("users").doc("JfqGrMmLPmiQc4RpwAWv");
+        let docRef = firestore.collection("users").doc("HOR6c5mog0FN0mrYU7Pq");
         let getDoc = docRef.get()
             .then(doc => {
                 if (!doc.exists) {
@@ -32,10 +32,13 @@ export default class EditScreen extends Component {
             wireframe :  data.wireframes[0]
         });
     }
-    saveData(){
+    saveData = (e) =>{
         // UPDATE IN THE FIRESTORE AS WELL
         const firestore = getFirestore();
+        // Save the updated controls
+        const wireframe = this.state.wireframe();
         
+
     }
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?

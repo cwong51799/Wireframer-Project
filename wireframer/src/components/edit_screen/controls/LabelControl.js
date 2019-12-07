@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Draggable from 'react-draggable'
+import {Rnd} from 'react-rnd'
+
 
 export default class LabelControl extends Component {
     constructor(props){
@@ -8,10 +9,22 @@ export default class LabelControl extends Component {
     state = {
         control : this.props.control
     }
-    handleStop = (e, data) =>{
+    handleDragStop = (e, data) =>{
         this.setState({
             newPositionX : data.x,
             newPositionY : data.y
+        })
+    }
+    handleResizeStop = (e,dir, ref, delta, position) =>{
+        let widthChange = delta.width;
+        let heightChange = delta.height;
+        const control = this.props.control;
+        control.width = control.width + widthChange;
+        control.height = control.height + heightChange;
+        this.setState({
+            control : control,
+            newPositionX : position.x,
+            newPositionY : position.y
         })
     }
     render() {
@@ -23,20 +36,26 @@ export default class LabelControl extends Component {
             borderStyle: "solid",
             borderColor: control.borderColor,
             position : "absolute",
-            left : control.positionX+"px",
-            top : control.positionY+"px",
-            size : control.size+"px",
+            width : control.width +"px",
+            height : control.height + "px",
             fontSize : control.textSize +"px",
         }
         return (
-            <Draggable
-                bounds = "parent"
-                onStop={this.handleStop}
-            >
+            <Rnd
+            onDragStop = {this.handleDragStop}
+            onResizeStop = {this.handleResizeStop}
+            bounds = "parent"
+            default={{
+                x: control.positionX,
+                y: control.positionY,
+                width: style.width,
+                height: style.height,
+              }}
+        >
                 <div className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
                 {control.text}
             </div>
-            </Draggable> 
+            </Rnd>
         )
     }
 }

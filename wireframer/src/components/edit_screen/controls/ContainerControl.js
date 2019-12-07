@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Draggable from 'react-draggable'
-
+import {Rnd} from 'react-rnd'
 
 
 // Have a control component that will read in a control and pass in one of these bad
@@ -14,14 +13,26 @@ export default class ContainerControl extends Component {
         newPositionY : this.props.control.positionY,
     }
     // Every control knows it's last possibly new positionX and Y.
-    handleStop = (e, data) =>{
+    handleDragStop = (e, data) =>{
         this.setState({
             newPositionX : data.x,
             newPositionY : data.y
         })
     }
-    render() {
+    handleResizeStop = (e,dir, ref, delta, position) =>{
+        let widthChange = delta.width;
+        let heightChange = delta.height;
         const control = this.props.control;
+        control.width = control.width + widthChange;
+        control.height = control.height + heightChange;
+        this.setState({
+            control : control,
+            newPositionX : position.x,
+            newPositionY : position.y
+        })
+    }
+    render() {
+        const control = this.state.control;
         const style = {
             backgroundColor : control.backgroundColor,
             borderWidth : control.borderThickness + "px " + control.borderThickness+"px",
@@ -29,18 +40,24 @@ export default class ContainerControl extends Component {
             borderStyle: "solid",
             borderColor: control.borderColor,
             position : "absolute",
-            left : control.positionX+"px",
-            top : control.positionY+"px",
-            size : control.size+"5px",
+            width : control.width +"px",
+            height : control.height + "px",
             fontSize : control.textSize +"px",
         }
         return (
-            <Draggable
+            <Rnd
+                onDragStop = {this.handleDragStop}
+                onResizeStop = {this.handleResizeStop}
                 bounds = "parent"
-                onStop={this.handleStop}
+                default={{
+                    x: control.positionX,
+                    y: control.positionY,
+                    width: style.width,
+                    height: style.height,
+                  }}
             >
             <div className = "containerControlOption" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>{control.text}</div>
-            </Draggable>
+            </Rnd>
         )
     }
 }

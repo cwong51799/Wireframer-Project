@@ -22,6 +22,9 @@ export default class Header extends Component {
                 preventScrolling: true
                 }}
             >
+            <NavItem href = "http://localhost:3000/editScreen">
+                Edit Screen
+            </NavItem>
             <NavItem href="http://localhost:3000/databaseTester">
               Database
             </NavItem>

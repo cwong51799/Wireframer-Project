@@ -21,3 +21,92 @@
 .centerPage{
     display: inline-block;
 }
+
+#editScreenParent{
+    display: grid;
+    grid-template-columns: 0.6fr 1.8fr 0.6fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". . .";
+    position: absolute;
+    top: 6.75%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.editScreenDiv{
+    border: solid black 1px;
+}
+
+#propertyEditorDiv{
+    padding: 3%;
+}
+
+.propertyEditor{
+    font-weight: bold;
+    padding: 10%;
+}
+
+.property{
+    padding: 7%;
+}
+
+#controlSelectionDiv{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1.8fr;
+    grid-template-areas: "." ".";
+}
+
+
+.controlsRow1{
+    display: inline-block;
+    grid-row: 1;
+}
+.controlsRow2{
+    padding: 10%;
+    grid-row: 2;
+    border-top: solid black 1px;
+    font-weight: bold;
+}
+
+#containerControlOption{
+    margin: auto;
+    border: solid black 1px;
+    border-radius: 2px;
+    width: 200px;
+    height: 100px;
+    background-color: white;
+}
+
+#containerControlOption, #labelControlOption, #buttonControlOption {
+    padding-bottom: 10%;
+}
+
+#labelControlOption{
+    font-weight: normal;
+}
+
+.controlOption{
+    padding: 7%;
+}
+
+
+
+#containerControlOption, #labelControlOption,#buttonControlOption,#textFieldControlOption {
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+  }
+  #containerControlOption:hover, #containerControlOption:focus, #containerControlOption:active,
+  #labelControlOption:hover, #labelControlOption:focus, #labelControlOption:active,
+  #buttonControlOption:hover, #buttonControlOption:focus, #buttonControlOption:active,
+  #textFieldControlOption:hover, #textFieldControlOption:focus, #textFieldControlOption:active {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+  }

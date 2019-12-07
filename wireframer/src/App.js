@@ -11,6 +11,7 @@ import Header from './components/header/Header';
 import LoginScreen from './components/login_screen/LoginScreen';
 import HomeScreen from './components/home_screen/HomeScreen';
 import RegisterScreen from './components/register_screen/RegisterScreen';
+import EditScreen from './components/edit_screen/EditScreen';
 
 function App() {
   //const { auth } = this.props;
@@ -24,6 +25,7 @@ function App() {
           <Route path="/databaseTester" component={DatabaseTester} />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
+          <Route path="/editScreen" component={EditScreen} />
           <Route path="/:any" component={HomeScreen} />
         </Switch>
         </div>

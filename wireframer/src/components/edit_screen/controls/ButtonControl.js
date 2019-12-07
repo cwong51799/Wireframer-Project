@@ -15,7 +15,7 @@ export default class ButtonControl extends Component {
             top : control.positionY,
             size : control.size,
             // Font size updates but nothing changes.
-            fontSize : control.textSize,
+            fontSize : control.textSize +"px",
         }
         return (
             <div style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}><Button className = "buttonTest"

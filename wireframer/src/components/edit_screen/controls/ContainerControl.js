@@ -12,9 +12,7 @@ export default class ContainerControl extends Component {
     render() {
         const control = this.props.control;
         const style = {
-            // Need to find the appropriate official name properties
             backgroundColor : control.backgroundColor,
-            // Need to get border working
             borderWidth : control.borderThickness + "px " + control.borderThickness+"px",
             borderRadius : control.borderRadius +"px",
             borderStyle: "solid",
@@ -23,7 +21,7 @@ export default class ContainerControl extends Component {
             top : control.positionY,
             size : control.size,
             // Font size updates but nothing changes.
-            fontSize : control.textSize,
+            fontSize : control.textSize +"px",
         }
         return (
             <div className = "containerControlOption" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>{control.text}</div>

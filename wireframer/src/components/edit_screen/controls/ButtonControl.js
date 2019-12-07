@@ -7,16 +7,18 @@ export default class ButtonControl extends Component {
     render() {
         const control = this.props.control;
         const style = {
-            // Need to find the appropriate official name properties
-            // Need to get border working
-            border : control.borderThickness + " solid " + control.borderColor,
+            borderWidth : control.borderThickness + "px " + control.borderThickness+"px",
+            borderRadius : control.borderRadius +"px",
+            borderStyle: "solid",
+            borderColor: control.borderColor,
             left : control.positionX,
             top : control.positionY,
             size : control.size,
+            // Font size updates but nothing changes.
             fontSize : control.textSize,
         }
         return (
-            <div style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}><Button
+            <div style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}><Button className = "buttonTest"
                 node="a"
                 small
                 style={{

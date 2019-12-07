@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import {TextInput, Button} from 'react-materialize'
-export default class LoginScreen extends Component {
+export default class RegisterScreen extends Component {
     render() {
         return (
             <div>
-                <TextInput
+                 <TextInput
                     icon="email"
                     label="Email"
                 />
                 <TextInput
                     icon="lock"
                     label="Password"
+                />
+                <TextInput
+                    icon="person_pin"
+                    label="First Name"
+                />
+                <TextInput
+                    icon="person_pin"
+                    label="Last Name"
                 />
                   <Button
                     node="button"
@@ -19,7 +27,7 @@ export default class LoginScreen extends Component {
                     }}
                     waves="light"
                 >
-                    Login
+                    Register
                 </Button>
             </div>
         )

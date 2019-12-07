@@ -37,11 +37,12 @@ class DatabaseTester extends React.Component {
 
     render() {
         return (
-            <div className = "testBackground">
+            <div className = "testDiv">
                 <button className="testButton" onClick={this.handleClear}>Clear Database</button>
                 <button className="testButton" onClick={this.handleReset}>Reset Database</button>
-                <a href = "https://console.firebase.google.com/u/0/project/wireframer-41732/database">Link to my database.</a>
-            </div>)
+                <p><a href = "https://console.firebase.google.com/u/0/project/wireframer-41732/database">Link to my database.</a></p>
+            </div>
+        )
     }
 }
 

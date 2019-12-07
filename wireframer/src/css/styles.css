@@ -22,7 +22,10 @@
 
 
 #header{
-    
+	background-color: burlywood;
+	border: solid black 2px;
+	padding: 1%;
+	font-weight: bold;
 }
 
 

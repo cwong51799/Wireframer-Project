@@ -9,24 +9,16 @@ import Draggable from 'react-draggable'
 export default class ContainerControl extends Component {
     state = {
         control : this.props.control,
+        // Save the new positions only if the save is clicked.
+        newPositionX : this.props.control.positionX,
+        newPositionY : this.props.control.positionY,
     }
-    // Add difference in X / Y 
+    // Every control knows it's last possibly new positionX and Y.
     handleStop = (e, data) =>{
-        console.log(data.x, data.y);
-       /* const target = e.target;
-        const movementData = target.style.transform;
-        const control = this.props.control;
-        if (movementData == ""){
-            console.log("No movement data, exiting.");
-            console.log(control.positionX, control.positionY);
-            return;
-        }
-        // Extracts the movement in the X/Y direction from format "translate(0px, 0px)"
-        let movementX = movementData.slice(10, movementData.indexOf("px")+2);
-        let movementY = movementData.slice(movementData.indexOf("px")+4, movementData.length-1);
-        control.positionX = parseInt(control.positionX) + parseInt(movementX);
-        control.positionY = parseInt(control.positionY) + parseInt(movementY);
-        target.style.transform = "translate(0px, 0px)"; */
+        this.setState({
+            newPositionX : data.x,
+            newPositionY : data.y
+        })
     }
     render() {
         const control = this.props.control;
@@ -40,7 +32,6 @@ export default class ContainerControl extends Component {
             left : control.positionX+"px",
             top : control.positionY+"px",
             size : control.size+"5px",
-            // Font size updates but nothing changes.
             fontSize : control.textSize +"px",
         }
         return (

@@ -28,8 +28,8 @@ export default class ControlGenerator extends Component {
         }
         if (control.type === "textfield"){
             return (
-                    <TextFieldControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited}/>
-                )
+                <TextFieldControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited}/>
+            )
         }
     }
 }

@@ -5,6 +5,12 @@ export default class ButtonControl extends Component {
     state = {
         control : this.props.control
     }
+    handleStop = (e, data) =>{
+        this.setState({
+            newPositionX : data.x,
+            newPositionY : data.y
+        })
+    }
     render() {
         const control = this.props.control;
         const style = {
@@ -12,7 +18,6 @@ export default class ButtonControl extends Component {
             left : control.positionX+"px",
             top : control.positionY+"px",
             size : control.size+"px",
-            // Font size updates but nothing changes.
             fontSize : control.textSize +"px",
         }
         return (

@@ -6,7 +6,13 @@ export default class TextFieldControl extends Component {
     state = {
         control : this.props.control
     }
-    // I guess the top left should determine it's position and from there it's just size.
+    // This shows the data x / y relative to it's starting position. When saving, do current X - data.x, current Y - data.y to get the relative value
+    handleStop = (e, data) =>{
+        this.setState({
+            newPositionX : data.x,
+            newPositionY : data.y
+        })
+    }
     render() {
         const control = this.props.control;
         const style = {
@@ -19,7 +25,6 @@ export default class TextFieldControl extends Component {
             left : control.positionX+"px",
             top : control.positionY+"px",
             size : control.size +"px",
-            // Font size updates but nothing changes.
             fontSize : control.textSize +"px",
         }
         return (

@@ -44,7 +44,7 @@ export default class ControlSelection extends Component {
                 </div>
                 <div className ="controlsRow2"> 
                     <div className="controlOption">
-                        <div id = "containerControlOption"></div>
+                        <div className = "containerControlOption"></div>
                         Container 
                     </div>
                     <div className="controlOption">

@@ -7,32 +7,32 @@
             "wireframes" : [
                     {
                         "name": "Wireframe Test 1",
-                        "dimensionX": 500,
-                        "dimensionY": 500,
+                        "dimensionX": 1200,
+                        "dimensionY": 900,
                         "controls" : [
                             {
                                 "key": 0,
                                 "positionX": 50,
                                 "positionY": 50,
                                 "size" : 30,
-                                "text" : "This assignment gives me anxiety",
+                                "text" : "I'm the container",
                                 "textSize" : 12,
                                 "backgroundColor" : "#56a986",
                                 "borderColor" : "#930af5",
                                 "borderThickness" : 5,
                                 "borderRadius" : 2,
-                                "type" : "label"
+                                "type" : "container"
                             },
                             {
                                 "key": 1,
                                 "positionX": 50,
                                 "positionY": 90,
                                 "size" : 30,
-                                "text" : "I'm the second control",
+                                "text" : "I'm the label",
                                 "textSize" : 12,
                                 "backgroundColor" : "#4307f8",
                                 "borderColor" : "#21bdde",
-                                "borderThickness" : 5,
+                                "borderThickness" : 1.5,
                                 "borderRadius" : 2,
                                 "type" : "label"
                             },
@@ -41,13 +41,26 @@
                                 "positionX": 500,
                                 "positionY": 200,
                                 "size" : 30,
-                                "text" : "I'm the third control",
+                                "text" : "I'm the button",
                                 "textSize" : 12,
                                 "backgroundColor" : "#8fbb44",
                                 "borderColor" : "#14ebae",
-                                "borderThickness" : 5,
+                                "borderThickness" : 1.5,
                                 "borderRadius" : 2,
-                                "type" : "label"
+                                "type" : "button"
+                            },
+                            {
+                                "key": 3,
+                                "positionX": 500,
+                                "positionY": 200,
+                                "size" : 30,
+                                "text" : "I'm the textfield",
+                                "textSize" : 12,
+                                "backgroundColor" : "#8fbb44",
+                                "borderColor" : "#14ebae",
+                                "borderThickness" : 1.5,
+                                "borderRadius" : 2,
+                                "type" : "textfield"
                             }
                         ]
                     },

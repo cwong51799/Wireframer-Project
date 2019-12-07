@@ -16,16 +16,17 @@ export default class LabelControl extends Component {
             borderRadius : control.borderRadius +"px",
             borderStyle: "solid",
             borderColor: control.borderColor,
-            left : control.positionX,
-            top : control.positionY,
-            size : control.size,
+            position : "absolute",
+            left : control.positionX+"px",
+            top : control.positionY+"px",
+            size : control.size+"px",
             // Font size updates but nothing changes.
             fontSize : control.textSize +"px",
         }
         return (
-            <div style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
+            <a className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
                 {control.text}
-            </div>
+            </a>
         )
     }
 }

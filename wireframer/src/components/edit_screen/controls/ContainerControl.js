@@ -17,9 +17,10 @@ export default class ContainerControl extends Component {
             borderRadius : control.borderRadius +"px",
             borderStyle: "solid",
             borderColor: control.borderColor,
-            left : control.positionX,
-            top : control.positionY,
-            size : control.size,
+            position : "absolute",
+            left : control.positionX+"px",
+            top : control.positionY+"px",
+            size : control.size+"5px",
             // Font size updates but nothing changes.
             fontSize : control.textSize +"px",
         }

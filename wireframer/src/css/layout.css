@@ -22,8 +22,8 @@
     display: inline-block;
 }
 
-.buttonTest{
-    border: 1px solid black
+.buttonControl{
+   
 }
 
 #editScreenParent{
@@ -74,7 +74,7 @@
     font-weight: bold;
 }
 
-#containerControlOption{
+.containerControlOption{
     margin: auto;
     border: solid black 1px;
     border-radius: 2px;
@@ -88,6 +88,9 @@
     border-radius: 5px;
 }
 
+.thinner{
+    width : 20%;
+}
 
 #editArea{
     position: relative;
@@ -110,6 +113,11 @@
     padding: 7%;
 }
 
+/* Add Padding After You figure out positioning
+.labelControl{
+    padding: 10px;
+}
+*/
 
 
 #containerControlOption, #labelControlOption,#buttonControlOption,#textFieldControlOption {

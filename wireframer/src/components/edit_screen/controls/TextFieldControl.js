@@ -4,6 +4,7 @@ export default class TextFieldControl extends Component {
     state = {
         control : this.props.control
     }
+    // I guess the top left should determine it's position and from there it's just size.
     render() {
         const control = this.props.control;
         const style = {
@@ -12,15 +13,16 @@ export default class TextFieldControl extends Component {
             borderRadius : control.borderRadius +"px",
             borderStyle: "solid",
             borderColor: control.borderColor,
-            left : control.positionX,
-            top : control.positionY,
-            size : control.size,
+            position: "absolute",
+            left : control.positionX+"px",
+            top : control.positionY+"px",
+            size : control.size +"px",
             // Font size updates but nothing changes.
             fontSize : control.textSize +"px",
         }
         return (
-            <div>
-                <TextInput label="Input" disabled/>
+            <div className = "thinner" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
+            <TextInput label={control.text}  disabled />
             </div>
         )
     }

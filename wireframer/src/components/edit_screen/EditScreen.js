@@ -13,7 +13,7 @@ export default class EditScreen extends Component {
     // Loads the data in the wireframe, this is hard hard coded just for testing for now
     loadData(){
         const firestore = getFirestore();
-        let docRef = firestore.collection("users").doc("hktnrjVoewMut3DVjXgo");
+        let docRef = firestore.collection("users").doc("JfqGrMmLPmiQc4RpwAWv");
         let getDoc = docRef.get()
             .then(doc => {
                 if (!doc.exists) {

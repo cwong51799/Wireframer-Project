@@ -50,7 +50,7 @@ export default class ButtonControl extends Component {
                 <Button className = "buttonControl"
                     node="a"
                     small
-                    style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}
+                    style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}
                     waves="light"
                 > {control.text}
                 </Button>

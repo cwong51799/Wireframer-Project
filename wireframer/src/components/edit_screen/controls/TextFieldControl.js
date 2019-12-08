@@ -51,7 +51,7 @@ export default class TextFieldControl extends Component {
                 height: style.height,
               }}
         >
-                <div className = "textfieldControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
+                <div className = "textfieldControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}>
                 <TextInput label={control.text}  disabled />
                 </div>
             </Rnd>

@@ -52,7 +52,7 @@ export default class LabelControl extends Component {
                 height: style.height,
               }}
         >
-                <div className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key)}>
+                <div className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}>
                 {control.text}
             </div>
             </Rnd>

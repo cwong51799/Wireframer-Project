@@ -15,22 +15,22 @@ export default class ControlGenerator extends Component {
         const control = this.props.control;
         if (control.type === "container"){
             return (
-                <ContainerControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited}/>
+                <ContainerControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited} theChosenControl = {this.props.theChosenControl}/>
             )
         }
         if (control.type === "label"){
             return (
-                <LabelControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited}/>
+                <LabelControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited} theChosenControl = {this.props.theChosenControl}/>
             )
         }
         if (control.type === "button"){
             return (
-                <ButtonControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited}/>
+                <ButtonControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited} theChosenControl = {this.props.theChosenControl}/>
             )
         }
         if (control.type === "textfield"){
             return (
-                <TextFieldControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited}/>
+                <TextFieldControl control = {control} setControlBeingEdited = {this.props.setControlBeingEdited} theChosenControl = {this.props.theChosenControl}/>
             )
         }
     }

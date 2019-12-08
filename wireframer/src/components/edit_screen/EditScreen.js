@@ -37,12 +37,12 @@ export default class EditScreen extends Component {
         const firestore = getFirestore();
         // Save the updated controls
         const wireframe = this.state.wireframe();
-        
 
     }
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?
-    setControlBeingEdited = (key) =>{
+    setControlBeingEdited = (key,e) =>{
+        console.log(e.target);
         let controlBeingEdited = this.state.wireframe.controls[key];
         this.setState({
             ...this.state,
@@ -154,7 +154,7 @@ export default class EditScreen extends Component {
         return (
             <div id = "editScreenParent">
                 <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection createNewControl = {this.createNewControl}/></div>
-                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} setControlBeingEdited = {this.setControlBeingEdited}/></div>
+                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} controlBeingEdited = {this.state.controlBeingEdited} setControlBeingEdited = {this.setControlBeingEdited}/></div>
                 <div id = "propertyEditorDiv" className ="editScreenDiv">
                     {this.state.wireframe == null ? <PropertyEditor
                     /> :

@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
-import LoginLink from './LoginLink'
 import {Navbar, Icon, NavItem} from 'react-materialize'
+import LogOutLink from './LogOutLink'
+import RegisterLink from './RegisterLink'
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firebaseConnect } from 'react-redux-firebase';
+import { logoutHandler } from '../../store/database/asynchHandler'
+import LoginLink from './LoginLink';
 
-export default class Header extends Component {
+class Header extends Component {
     render() {
+       // Header needs to know if it's on the login page.
+        const {auth, profile } = this.props;
+        const links = auth.uid ? <LogOutLink profile={profile} /> : <LoginLink/>;
         return (
             // Hard routing to the places with href, is this OK instead of using navlink? 
             <Navbar
@@ -22,32 +32,28 @@ export default class Header extends Component {
                 preventScrolling: true
                 }}
             >
-            <NavItem href = "http://localhost:3000/editScreen">
+            <NavLink to = "/editScreen">
                 Edit Screen
-            </NavItem>
-            <NavItem href="http://localhost:3000/databaseTester">
+            </NavLink>
+            <NavLink to = "/databaseTester">
               Database
-            </NavItem>
-            {
-            /* First checks if on login page, if yes, then display register option, if no,
-            Second check should be if logged in, if yes, show logout, if no, show login. */
-            }
-            {false ? <NavItem href = "http://localhost:3000/register">
-                Register
-            </NavItem> : (true ? 
-                <NavItem href="http://localhost:3000/login">
-                Login
-                </NavItem> 
-                :
-                <NavItem href="http://localhost:3000/login">
-                Logout
-            </NavItem>)
-            }
-          </Navbar> 
+            </NavLink>
+            {links}
+            </Navbar>
         )
     }
 }
 
+
+const mapStateToProps = state => ({
+  auth: state.firebase.auth,
+  profile: state.firebase.profile,
+});
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps),
+)(Header);
 
 /*
 <div id = "header">

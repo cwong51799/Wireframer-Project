@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { firebaseConnect } from 'react-redux-firebase';
-import { logoutHandler } from '../../store/database/asynchHandler'
+import React from 'react';
+import { NavLink} from 'react-router-dom';
+import { NavItem } from 'react-materialize';
 
-export default class LoginLink extends Component {
-    render() {
-        return (
-            <div className = "right">
-                <NavLink to = "/login">Login</NavLink>
-            </div>
-        )
-    }
+class LoginLink extends React.Component {
+  render() {
+    const onLoginPage = (window.location.href.includes("login"));
+    return (
+      <ul className = "right" >
+        {!onLoginPage ? <li><NavItem href="/login">Login</NavItem></li> : <li><NavLink to="/register">Register</NavLink></li>}
+      </ul>
+    );
+  }
 }
+
+export default LoginLink;

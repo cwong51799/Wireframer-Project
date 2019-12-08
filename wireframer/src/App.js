@@ -37,12 +37,10 @@ const mapStateToProps = state => ({
   auth: state.firebase.auth,
 });
 
-/* Need to get
+//Need to get
 export default compose(
   firebaseConnect(),
   connect(mapStateToProps),
 )(App);
-  Into working condition, such that the website is reloaded upon database change.
-*/
+ // Into working condition, such that the website is reloaded upon database change.
 
-export default App;

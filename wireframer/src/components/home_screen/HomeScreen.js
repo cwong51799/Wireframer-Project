@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import {Select, Button, Icon} from 'react-materialize'
-export default class HomeScreen extends Component {
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { Redirect} from 'react-router-dom';
+import { firestoreConnect, getFirebase } from 'react-redux-firebase';
+import { getFirestore } from 'redux-firestore';
+
+
+class HomeScreen extends Component {
     // I'd like to get a preview of the wireframe shown beneath when the option is selected.
     // The biggest problem right now is accessing the wireframes themselves, connecting with the database, and getting map state to props to work.
     render() {
-        console.log(this.props)
+        console.log(this.props.auth)
         // Need to disable the MOVE-TO button if there are no wireframes made yet.
         return (
             <div className = "centerPage">
@@ -54,3 +61,17 @@ export default class HomeScreen extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    };
+};
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+      { collection: 'todoLists' },
+    ]),
+)(HomeScreen);

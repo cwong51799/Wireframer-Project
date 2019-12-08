@@ -8,6 +8,8 @@ export default class ControlGenerator extends Component {
     constructor(props){
         super(props);
     }
+    // If the control is default set to outside the bounds of the wireframe, it will show there at first and need to be snapped in.
+    // I dont know if I need to accoutn for this however, since the wireframe is to be made by the user, not loaded using a cfg.
     render() {
         //console.log("ControlGenerator Render called.");
         const control = this.props.control;

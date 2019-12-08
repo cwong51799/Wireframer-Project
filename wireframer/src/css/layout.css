@@ -42,6 +42,10 @@
     border: solid black 1px;
 }
 
+button{
+    text-align: center;
+}
+
 #propertyEditorDiv{
     padding: 3%;
 }
@@ -88,7 +92,7 @@
     border-radius: 5px;
 }
 
-.thinner{
+.textfieldControl{
     width : 20%;
 }
 
@@ -98,14 +102,13 @@
     margin-right: auto;
     display: inline-block;
     width: 100%;
-    top: 7%;
 }
 
-#containerControlOption, #labelControlOption, #buttonControlOption {
+.containerControlOption, .labelControlOption, .buttonControlOption {
     padding-bottom: 10%;
 }
 
-#labelControlOption{
+.labelControlOption{
     font-weight: normal;
 }
 
@@ -120,7 +123,7 @@
 */
 
 
-#containerControlOption, #labelControlOption,#buttonControlOption,#textFieldControlOption {
+.containerControlOption, .labelControlOption,.buttonControlOption,.textFieldControlOption {
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
@@ -128,10 +131,10 @@
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
   }
-  #containerControlOption:hover, #containerControlOption:focus, #containerControlOption:active,
-  #labelControlOption:hover, #labelControlOption:focus, #labelControlOption:active,
-  #buttonControlOption:hover, #buttonControlOption:focus, #buttonControlOption:active,
-  #textFieldControlOption:hover, #textFieldControlOption:focus, #textFieldControlOption:active {
+  .containerControlOption:hover, .containerControlOption:focus, .containerControlOption:active,
+ .labelControlOption:hover, .labelControlOption:focus, .labelControlOption:active,
+  .buttonControlOption:hover, .buttonControlOption:focus, .buttonControlOption:active,
+  .textFieldControlOption:hover, .textFieldControlOption:focus, .textFieldControlOption:active {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
     -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);

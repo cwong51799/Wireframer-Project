@@ -55,6 +55,97 @@ export default class EditScreen extends Component {
             
         })
     }
+    // Methods to be sent to and triggered by the ControlSelection
+    createNewControl = (e) =>{
+        const type = e.target.className;
+        // This should never happen, since this page is loaded with a wireframe.
+        if (this.state.wireframe == null){
+            return;
+        }
+        let wireframeControls = this.state.wireframe.controls;
+        switch(type){
+            // Create default container
+            case 'containerControlOption':
+                wireframeControls.push({
+                    key : wireframeControls.length,
+                    positionX : 0,
+                    positionY: 0,
+                    width : 200,
+                    height : 100,
+                    text : "",
+                    textSize : 12,
+                    backgroundColor : "#FFFFFF",
+                    borderColor : "#000000",
+                    borderThickness : 5,
+                    borderRadius : 2,
+                    type : "container"
+                })
+                break;
+            // Default label
+            case 'labelControlOption':
+                    wireframeControls.push({
+                        key : wireframeControls.length,
+                        className : "labelControl",
+                        positionX : 0,
+                        positionY: 0,
+                        width: 200,
+                        height: 50,
+                        text : "Prompt for Input",
+                        textSize : 20,
+                        backgroundColor : "#FFFFFF",
+                        borderColor : "#000000",
+                        borderThickness : 1,
+                        borderRadius : 1,
+                        type : "label"
+                    })
+                    break;
+            // Default button
+            case 'waves-effect waves-light btn-small':
+                    wireframeControls.push({
+                        key : wireframeControls.length,
+                        className : "buttonControl",
+                        positionX : 0,
+                        positionY: 0,
+                        width: 92,
+                        height: 32,
+                        text : "Submit",
+                        textSize : 16,
+                        backgroundColor : "#26a69a",
+                        borderColor : "#000000",
+                        borderThickness : 0,
+                        borderRadius : 0,
+                        type : "button"
+                    })
+                    break;
+            // Default text field
+            case 'textFieldControlOption':
+                wireframeControls.push({
+                    key : wireframeControls.length,
+                    className : "textfieldControl",
+                    positionX : 0,
+                    positionY: 0,
+                    width: 200,
+                    height: 100,
+                    text : "Input",
+                    textSize : 16,
+                    backgroundColor : "#FFFFFF",
+                    borderColor : "#000000",
+                    borderThickness : 1,
+                    borderRadius : 0,
+                    type : "textfield"
+                })
+                break;
+        }
+        // Update after adding, shouldn't this be automatic?
+        this.setState({
+            
+        })
+    }
+
+
+
+
+
     // The PropertyEditor only needs to know what control it's working on.
     // The editAreaDiv needs to know the entire wireframe
     // The controlSelection doesn't need to know shit
@@ -62,7 +153,7 @@ export default class EditScreen extends Component {
         //console.log("EditScreen Render called.");
         return (
             <div id = "editScreenParent">
-                <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection/></div>
+                <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection createNewControl = {this.createNewControl}/></div>
                 <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} setControlBeingEdited = {this.setControlBeingEdited}/></div>
                 <div id = "propertyEditorDiv" className ="editScreenDiv">
                     {this.state.wireframe == null ? <PropertyEditor

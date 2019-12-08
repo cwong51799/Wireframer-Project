@@ -26,10 +26,14 @@ export default class ButtonControl extends Component {
     render() {
         const control = this.props.control;
         const style = {
-            position : "absolute",
             width : control.width +"px",
             height : control.height + "px",
             fontSize : control.textSize +"px",
+            backgroundColor : control.backgroundColor,
+            borderWidth : control.borderThickness + "px " + control.borderThickness+"px",
+            borderRadius : control.borderRadius +"px",
+            borderStyle: "solid",
+            borderColor: control.borderColor,
         }
         return (
             <Rnd

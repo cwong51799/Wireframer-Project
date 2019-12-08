@@ -44,15 +44,15 @@ export default class ControlSelection extends Component {
                 </div>
                 <div className ="controlsRow2"> 
                     <div className="controlOption">
-                        <div className = "containerControlOption"></div>
+                        <div className = "containerControlOption" onClick={(e)=>this.props.createNewControl(e)}></div>
                         Container 
                     </div>
                     <div className="controlOption">
-                        <div id = "labelControlOption"> Prompt for Input</div>
+                        <div className = "labelControlOption" onClick={(e)=>this.props.createNewControl(e)}> Prompt for Input</div>
                         Label
                     </div>
                     <div className="controlOption">
-                        <div id = "buttonControlOption">  
+                        <div className = "buttonControlOption">  
                         <Button
                             node="a"
                             small
@@ -60,14 +60,16 @@ export default class ControlSelection extends Component {
                             marginRight: '5px'
                             }}
                             waves="light"
+                            // Had to put it in here, the button is an exception.
+                            onClick={(e)=>this.props.createNewControl(e)}
                         > Submit
                         </Button>
                     </div>
                     Button
                     </div>
                     <div className="controlOption">
-                        <div id = "textFieldControlOption">
-                            <TextInput label="Input" disabled/>
+                        <div className = "textFieldControlOption" onClick={(e)=>this.props.createNewControl(e)}>
+                            <TextInput className = "textFieldControlOption" disabled label="Input"/>
                         </div>
                     </div>
                     Textfield

@@ -13,11 +13,11 @@ export default class PropertyEditor extends Component {
     }
 
     // Once map state to props is working, set state won't be necessary and I can just update the database.
+    // Maybe add the option to wipe background color.
     handleChange = (e) => {
         if (this.props.controlToEdit == undefined){
             return;
         }
-        console.log(e)
         const {target} = e;
         const control = this.props.controlToEdit;
         const fireStore = getFirestore();
@@ -82,7 +82,7 @@ export default class PropertyEditor extends Component {
                 <TextInput placeholder="Control Text" value = {controlSelected ? control.text : ""} id="controlText" onChange={this.handleChange}/>
                 <div className ="property">
                 Font-size: 
-                <TextInput type = "number" placeholder="Font Size" value = {controlSelected ? control.textSize : 0} id = "controlTextSize" onChange={this.handleChange}/>
+                <TextInput type = "number" value = {controlSelected ? control.textSize : 0} id = "controlTextSize" onChange={this.handleChange}/>
                 </div>
                 <div className ="property">
                 Background:

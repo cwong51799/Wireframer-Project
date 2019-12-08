@@ -12,17 +12,31 @@ export default class EditArea extends Component {
     // I guess containers should alway's be behind everything else, therefore they must be rendered last.
     // Ensures that containers are rendered first and behind everything else.
     // Could add more logic to ths but eh, right now everything beyond containers are up to the order they're placed.
-    logicallyOrderControls(){
+    /*logicallyOrderControls(){
         const wireframeControls = this.props.wireframe.controls;
         wireframeControls.sort((control1, control2)=>{
             if (control1.type == "container"){
+                let placeholder = control1.key;
+                control1.key = control2.key;
+                control2.key = placeholder;
                 return -1;
             }
             else{
                 return 1;
             }
         });
+        console.log("Array before fixing");
+        console.table(wireframeControls);
+        this.fixKeys(wireframeControls);
     }
+    // Set the key of the item to it's index in the array
+    fixKeys(array){
+        for (var i =0;i<array.length;i++){
+            array[i].key = i;
+        }
+        console.log("Array after fixing");
+        console.table(array);
+    }*/
     // How can I get this area to be centered no matter what?
     render() {
         //console.log("EditArea Render called.");
@@ -31,7 +45,7 @@ export default class EditArea extends Component {
         const setControlBeingEdited = this.props.setControlBeingEdited;
         const controlBeingEdited = this.props.controlBeingEdited;
         if (wireframeAttached) {
-            this.logicallyOrderControls();
+            //this.logicallyOrderControls();
             return (
             <div id = "editArea">
                 <div id = "wireframeZone" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>

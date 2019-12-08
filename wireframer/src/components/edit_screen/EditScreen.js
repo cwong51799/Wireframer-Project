@@ -6,9 +6,32 @@ import { getFirestore } from 'redux-firestore';
 import EditArea from './EditArea';
 
 export default class EditScreen extends Component {
-    state = {
-        wireframe : null,
-        controlBeingEdited : null
+    constructor(props){
+        super(props);
+        this.state = {
+            wireframe : null,
+            controlBeingEdited : null
+        }
+        document.body.onkeydown = (e) => {
+            // delete
+            // Should never be null.
+            if (e.keyCode === 46 && this.state.wireframe != null){
+                this.removeControl(this.state.controlBeingEdited);  
+            }
+        }    
+    }
+
+    removeControl(controlToRemove){
+        const controls = this.state.wireframe.controls;
+        controls.splice(controlToRemove.key, 1);
+        // Update the key of the remaining elements
+        for (var i = controlToRemove.key; i<controls.length;i++){
+            controls[i].key = controls[i].key-1;
+        }
+        // update after deleting
+        this.setState({
+        
+        })
     }
     // Loads the data in the wireframe, this is hard hard coded just for testing for now
     loadData(){
@@ -42,7 +65,6 @@ export default class EditScreen extends Component {
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?
     setControlBeingEdited = (key,e) =>{
-        console.log(e.target);
         let controlBeingEdited = this.state.wireframe.controls[key];
         this.setState({
             ...this.state,
@@ -141,10 +163,13 @@ export default class EditScreen extends Component {
             
         })
     }
-
-
-
-
+    // Working towards getting the delete control
+    deleteControl = (e) =>{
+        const controls = this.state.wireframe.controls;
+        console.table(controls);
+        controls.remove(this.state.controlBeingEdited);
+        console.table(controls);
+    }
 
     // The PropertyEditor only needs to know what control it's working on.
     // The editAreaDiv needs to know the entire wireframe

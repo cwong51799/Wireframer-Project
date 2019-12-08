@@ -51,9 +51,11 @@ export default class TextFieldControl extends Component {
                 height: style.height,
               }}
         >
+            <div className = {this.props.theChosenControl ? "box" : ""} style = {{width : (parseInt(control.width) + 20) + "px", height: (parseInt(control.height)) +"px"}}>
                 <div className = "textfieldControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}>
                 <TextInput label={control.text}  disabled />
                 </div>
+            </div>
             </Rnd>
         )
     }

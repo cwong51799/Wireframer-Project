@@ -56,8 +56,8 @@ export default class ContainerControl extends Component {
                     height: style.height,
                   }}
             >
-            <div className = {this.props.theChosenControl ? "chosen" : ""}>
-                <div className = "content" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}>{control.text}</div>
+            <div className = {this.props.theChosenControl ? "box" : ""} style = {{width : (parseInt(control.width) + 20) + "px", height: (parseInt(control.height)) +"px"}}>
+                <div className = "containerControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}>{control.text}</div>
             </div>
             </Rnd>
         )

@@ -52,8 +52,10 @@ export default class LabelControl extends Component {
                 height: style.height,
               }}
         >
+            <div className = {this.props.theChosenControl ? "box" : ""} style = {{width : (parseInt(control.width) + 20) + "px", height: (parseInt(control.height)) +"px"}}>
                 <div className = "labelControl" style = {style} onClick = {(e)=>this.props.setControlBeingEdited(control.key,e)}>
                 {control.text}
+            </div>
             </div>
             </Rnd>
         )

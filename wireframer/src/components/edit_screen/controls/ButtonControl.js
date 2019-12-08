@@ -46,7 +46,7 @@ export default class ButtonControl extends Component {
                 width: style.width,
                 height: style.height,
               }}
-        >
+        >   <div className = {this.props.theChosenControl ? "box" : ""} style = {{width : (parseInt(control.width) + 20) + "px", height: (parseInt(control.height)) +"px"}}>
                 <Button className = "buttonControl"
                     node="a"
                     small
@@ -54,6 +54,7 @@ export default class ButtonControl extends Component {
                     waves="light"
                 > {control.text}
                 </Button>
+            </div>
             </Rnd>
         )
     }

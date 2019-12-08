@@ -7,13 +7,14 @@ export default class LabelControl extends Component {
         super(props);
     }
     state = {
-        control : this.props.control
+        control : this.props.control,
+        newPositionX : this.props.control.positionX,
+        newPositionY : this.props.control.positionY,
     }
     handleDragStop = (e, data) =>{
-        this.setState({
-            newPositionX : data.x,
-            newPositionY : data.y
-        })
+        const control = this.state.control;
+        control.positionX = data.x;
+        control.positionY = data.y;
     }
     handleResizeStop = (e,dir, ref, delta, position) =>{
         let widthChange = delta.width;
@@ -21,11 +22,6 @@ export default class LabelControl extends Component {
         const control = this.props.control;
         control.width = control.width + widthChange;
         control.height = control.height + heightChange;
-        this.setState({
-            control : control,
-            newPositionX : position.x,
-            newPositionY : position.y
-        })
     }
     render() {
         const control = this.props.control;

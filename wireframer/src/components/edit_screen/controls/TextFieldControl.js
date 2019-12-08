@@ -5,14 +5,15 @@ import {Rnd} from 'react-rnd'
 
 export default class TextFieldControl extends Component {
     state = {
-        control : this.props.control
+        control : this.props.control,
+        newPositionX : this.props.control.positionX,
+        newPositionY : this.props.control.positionY,
     }
     // This shows the data x / y relative to it's starting position. When saving, do current X - data.x, current Y - data.y to get the relative value
     handleDragStop = (e, data) =>{
-        this.setState({
-            newPositionX : data.x,
-            newPositionY : data.y
-        })
+        const control = this.state.control;
+        control.positionX = data.x;
+        control.positionY = data.y;
     }
     handleResizeStop = (e,dir, ref, delta, position) =>{
         let widthChange = delta.width;
@@ -20,11 +21,6 @@ export default class TextFieldControl extends Component {
         const control = this.props.control;
         control.width = control.width + widthChange;
         control.height = control.height + heightChange;
-        this.setState({
-            control : control,
-            newPositionX : position.x,
-            newPositionY : position.y
-        })
     }
     render() {
         const control = this.props.control;

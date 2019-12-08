@@ -25,10 +25,12 @@ export default class EditScreen extends Component {
         const controls = this.state.wireframe.controls;
         controls.splice(controlToRemove.key, 1);
         // Update the key of the remaining elements
+        console.table(controls)
         for (var i = controlToRemove.key; i<controls.length;i++){
             controls[i].key = controls[i].key-1;
         }
-        // update after deleting
+        console.table(controls);
+        // reload after deleting
         this.setState({
         
         })

@@ -40,12 +40,14 @@ class HomeScreen extends Component {
             controls : [],
             dimensionX : 1200,
             dimensionY : 900,
-            name : "New Wireframe",
+            name : "Wireframe " + (userWireframes.length+1),
             key : userWireframes.length
         })
         firestore.collection("users").doc(userID).update({
             wireframes : userWireframes
         })
+        // Update after adding.
+        this.setState({})
     }
 
     getWireframeOfName(name){
@@ -138,7 +140,7 @@ class HomeScreen extends Component {
             )
         }
         else{
-            return <div>Log in to get started!</div>
+            return <div></div>
         }
     }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { getFirestore } from 'redux-firestore';
 import wireframeJson from './WireframeTestData.json';
+import { Redirect } from 'react-router-dom';
 
 class DatabaseTester extends React.Component {
 
@@ -36,6 +37,11 @@ class DatabaseTester extends React.Component {
     }
 
     render() {
+        const {auth, profile } = this.props;
+        const isAdmin = profile.administrator;
+        if (!isAdmin){
+            return <Redirect to="/"/>;
+        }
         return (
             <div className = "testDiv">
                 <button className="testButton" onClick={this.handleClear}>Clear Database</button>
@@ -49,7 +55,8 @@ class DatabaseTester extends React.Component {
 const mapStateToProps = function (state) {
     return {
         auth: state.firebase.auth,
-        firebase: state.firebase
+        firebase: state.firebase,
+        profile : state.firebase.profile
     };
 }
 

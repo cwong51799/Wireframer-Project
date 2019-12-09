@@ -14,6 +14,7 @@ class Header extends Component {
        // Header needs to know if it's on the login page.
         const {auth, profile } = this.props;
         const links = auth.uid ? <LogOutLink profile={profile} /> : <LoginLink/>;
+        const isAdmin = profile.administrator;
         return (
             // Hard routing to the places with href, is this OK instead of using navlink? 
             <Navbar
@@ -32,12 +33,11 @@ class Header extends Component {
                 preventScrolling: true
                 }}
             >
-            <NavLink to = "/editScreen">
-                Edit Screen
-            </NavLink>
-            <NavLink to = "/databaseTester">
-              Database
-            </NavLink>
+            {isAdmin ?
+             <NavLink to = "/databaseTester">
+                  Database
+             </NavLink> : <p></p>
+            }
             {links}
             </Navbar>
         )

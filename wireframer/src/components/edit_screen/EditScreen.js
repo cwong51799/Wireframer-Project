@@ -8,8 +8,9 @@ import EditArea from './EditArea';
 export default class EditScreen extends Component {
     constructor(props){
         super(props);
+        // SCUFFED
         this.state = {
-            wireframe : null,
+            wireframe : this.props.location.state.wireframe,
             controlBeingEdited : null
         }
         document.body.onkeydown = (e) => {

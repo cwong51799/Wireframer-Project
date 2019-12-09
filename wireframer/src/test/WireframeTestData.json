@@ -9,6 +9,7 @@
                         "name": "Wireframe Test 1",
                         "dimensionX": 1200,
                         "dimensionY": 900,
+                        "key" : 0,
                         "controls" : [
                             {
                                 "key": 0,
@@ -73,6 +74,7 @@
                         "name": "Wireframe Test 2",
                         "dimensionX": 300,
                         "dimensionY": 300,
+                        "key" : 1,
                         "controls" : [
                             {
                                 "key": 0,

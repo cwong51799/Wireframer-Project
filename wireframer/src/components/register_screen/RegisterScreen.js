@@ -48,6 +48,7 @@ class RegisterScreen extends Component {
                     icon="lock"
                     label="Password"
                     id = "password"
+                    password
                     onChange = {this.handleChange}
                 />
                 <TextInput

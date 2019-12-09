@@ -16,10 +16,10 @@ class LogOutLink extends React.Component {
   render() {
     const { profile } = this.props;
     return (
-      <div>
+      <ul>
         <li><NavLink to="/" onClick={this.handleLogout}>Log Out</NavLink></li>
         <li><NavLink to="/" className="btn btn-floating pink lighten-1">{profile.initials}</NavLink></li>
-      </div>
+      </ul>
     );
   };
 }

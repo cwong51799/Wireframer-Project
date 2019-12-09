@@ -23,15 +23,35 @@ class EditScreen extends Component {
                 controlBeingEdited : null
             }
         }
+        this.ctrlDown = false;
         document.body.onkeydown = (e) => {
-            // delete
-            // Should never be null.
-            if (e.keyCode === 46 && this.state.wireframe != null){
-                this.removeControl(this.state.controlBeingEdited);  
+            if (this.state.controlBeingEdited != null){
+                if (e.keyCode === 17 || e.keyCode === 91){
+                    this.ctrlDown = true;
+                }
+                if (e.keyCode === 46){
+                    this.removeControl(this.state.controlBeingEdited);  
+                }
+                if (this.ctrlDown && e.keyCode === 68){
+                    this.duplicateControl(this.state.controlBeingEdited);
+                }
             }
-        }    
+        } 
+        document.body.onkeyup = function(e) {
+            if (e.keyCode == 17 || e.keyCode == 91) {
+              this.ctrlDown = false;
+            };
+        };   
     }
-
+    duplicateControl(controlToDuplicate){
+        const controls = this.state.wireframe.controls;
+        let controlCopy = Object.assign({}, controlToDuplicate);
+        controlCopy.key = controls.length;
+        controlCopy.positionX = controlToDuplicate.positionX + 100;
+        controlCopy.positionY = controlToDuplicate.positionY + 100;
+        controls.push(controlCopy);
+        this.setState({});
+    }
     removeControl(controlToRemove){
         const controls = this.state.wireframe.controls;
         controls.splice(controlToRemove.key, 1);

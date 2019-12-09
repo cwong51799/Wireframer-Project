@@ -12,6 +12,28 @@ export default class ControlSelection extends Component {
             closing : true
         })
     }
+    zoomIn = () =>{
+        const wireframeZone = document.getElementById("wireframeZone");
+        let className = wireframeZone.getAttribute("class");
+        if (className === "normalZoom"){
+            wireframeZone.setAttribute("class", "doubleZoom");
+        }
+        // If it's at half, make it normal
+        if (className == "halfZoom"){
+            wireframeZone.setAttribute("class", "normalZoom");
+        }
+    }
+    zoomOut = () =>{
+        const wireframeZone = document.getElementById("wireframeZone");
+        let className = wireframeZone.getAttribute("class");
+        if (className === "normalZoom"){
+            wireframeZone.setAttribute("class", "halfZoom");
+        }
+        // If it's at half, make it normal
+        if (className == "doubleZoom"){
+            wireframeZone.setAttribute("class", "normalZoom");
+        }
+    }
     render() {
         if (this.state.closing){
             return <Redirect to="/"></Redirect>
@@ -24,6 +46,7 @@ export default class ControlSelection extends Component {
                         flat
                         node="button"
                         waves="light"
+                        onClick = {this.zoomIn}
                     >
                         <Icon small>
                         zoom_in
@@ -34,6 +57,7 @@ export default class ControlSelection extends Component {
                         flat
                         node="button"
                         waves="light"
+                        onClick = {this.zoomOut}
                     >
                         <Icon small>
                         zoom_out

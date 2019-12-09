@@ -38,6 +38,8 @@
     left: 0;
 }
 
+
+
 .editScreenDiv{
     border: solid black 1px;
 }
@@ -174,4 +176,15 @@ button{
     font-weight : bold;
 }
 .numberInput{
+}
+
+.normalZoom{
+    zoom : 1;
+}
+
+.doubleZoom{
+    zoom : 2;
+}
+.halfZoom{
+    zoom : .5;
 }

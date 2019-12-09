@@ -56,7 +56,7 @@ export default class EditArea extends Component {
                 <input className = "numberInput" type ="number" id="dimensionYchange" defaultValue = {wireframe.dimensionY} onChange = {this.makeUpdatable}></input>
                 <p><Button id = "updateBtn" onClick = {this.updateDimensions} disabled = {!this.state.updatable}>Update</Button></p>
             </div>}
-            <div id = "wireframeZone" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
+            <div id = "wireframeZone" className = "normalZoom" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
                     {wireframe.controls.map(function(control) { 
                         // If it's the control being edited, flag it to be 
                         return (

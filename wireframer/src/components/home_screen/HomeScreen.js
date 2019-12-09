@@ -12,6 +12,7 @@ import EditArea from '../edit_screen/EditArea';
 
 class HomeScreen extends Component {
     // I'd like to get a preview of the wireframe shown beneath when the option is selected.
+    // This doesn't move the most recently accessed to the top. Due to how the selector works. But this can be changed similar to HW3
     state = {
         usersWireframes : null,
         moveToWireframe : null,

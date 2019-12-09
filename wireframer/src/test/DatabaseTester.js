@@ -13,31 +13,31 @@ class DatabaseTester extends React.Component {
         const fireStore = getFirestore();
         fireStore.collection('users').get().then(function(querySnapshot){
             querySnapshot.forEach(function(doc) {
-                console.log("deleting " + doc.id);
-                fireStore.collection('users').doc(doc.id).delete();
+                // MY ACCOUNTS ID, NEVER RESET THIS
+                if (doc.id === "sH8vpcZUIVOe94nwYSuzV0CYOyo2"){
+                    fireStore.collection('users').doc(doc.id).update({
+                        wireframes : []
+                    })
+                }else{
+                    fireStore.collection('users').doc(doc.id).delete();
+                }
             })
         });
     }
 
     handleReset = () => {
         const fireStore = getFirestore();
-        wireframeJson.users.forEach(user => {
-           console.log(user);
-           fireStore.collection('users').add({
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    userID: user.userID,
-                    wireframes : user.wireframes
-                }).then(() => {
-                    console.log("DATABASE RESET");
-                }).catch((err) => {
-                    console.log(err);
-                });
-        });
+        fireStore.collection('users').doc("sH8vpcZUIVOe94nwYSuzV0CYOyo2").update({
+                wireframes : wireframeJson.wireframes
+            }).then(() => {
+                console.log("DATABASE RESET");
+            }).catch((err) => {
+                console.log(err);
+            });
     }
 
     render() {
-        const {profile } = this.props;
+        const {profile} = this.props;
         const isAdmin = profile.administrator;
         if (!isAdmin){
             return <Redirect to="/"/>;

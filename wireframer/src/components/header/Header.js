@@ -18,8 +18,9 @@ class Header extends Component {
             // Hard routing to the places with href, is this OK instead of using navlink? 
             <Navbar
                 alignLinks="right"
-                brand={<NavLink to = "/" className="brand-logo">Wireframer</NavLink>}
+                brand={<NavLink to = "/" className="brand-logo center">Wireframer</NavLink>}
                 menuIcon={<Icon>menu</Icon>}
+                center
                 options={{
                 draggable: true,
                 edge: 'left',

@@ -52,7 +52,9 @@ class HomeScreen extends Component {
             wireframes : userWireframes
         })
         // Update after adding.
-        this.setState({})
+        this.setState({
+            wireframeSelected : userWireframes[userWireframes.length-1]
+        })
     }
 
     isDuplicateName(usersWireframes, name){
@@ -154,6 +156,7 @@ class HomeScreen extends Component {
         const moveToWireframe = this.state.moveToWireframe;
         let usersWireframes = this.state.usersWireframes;
         let wireframeSelected = this.state.wireframeSelected;
+        console.log(wireframeSelected);
         let EditAreaPreview = wireframeSelected != null ? <EditArea wireframe = {wireframeSelected} preview = {true}/> : <div></div>
         if (this.state.refresh){
             return <Redirect to='/' />
@@ -170,9 +173,7 @@ class HomeScreen extends Component {
                 this.getUsersWireframes();
                 return <div></div>
             }
-            console.log(usersWireframes);
             this.reorderByAccessDate(usersWireframes);
-            console.log(usersWireframes);
             return (
                 <div className = "homeScreen">
                     <div className = "centerPage">

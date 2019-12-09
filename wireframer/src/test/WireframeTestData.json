@@ -1,9 +1,4 @@
 {
-    "users": [
-        {
-            "firstName" : "Christopher",
-            "lastName" : "Wong",
-            "userID" : "cwong51799",
             "wireframes" : [
                     {
                         "name": "Wireframe Test 1",
@@ -28,8 +23,8 @@
                             },
                             {
                                 "key": 1,
-                                "positionX": 50,
-                                "positionY": 90,
+                                "positionX": 250,
+                                "positionY": 100,
                                 "width" : 100,
                                 "height" : 200,
                                 "text" : "I'm the label",
@@ -56,8 +51,8 @@
                             },
                             {
                                 "key": 3,
-                                "positionX": 500,
-                                "positionY": 200,
+                                "positionX": 800,
+                                "positionY": 600,
                                 "width" : 100,
                                 "height" : 200,
                                 "text" : "I'm the textfield",
@@ -73,20 +68,20 @@
                     {
                         
                         "name": "Wireframe Test 2",
-                        "dimensionX": 300,
-                        "dimensionY": 300,
+                        "dimensionX": 600,
+                        "dimensionY": 500,
                         "key" : 1,
                         "lastAccessed" : "",
                         "controls" : [
                             {
                                 "key": 0,
-                                "positionX": 150,
-                                "positionY": 150,
-                                "width" : 100,
-                                "height" : 200,
+                                "positionX": 0,
+                                "positionY": 0,
+                                "width" : 400,
+                                "height" : 400,
                                 "text" : "I'm a wireframe with one big control!",
                                 "textSize" : 12,
-                                "backgroundColor" : "#d12e5b",
+                                "backgroundColor" : "#d12333",
                                 "borderColor" : "#1100ff",
                                 "borderThickness" : 5,
                                 "borderRadius" : 2,
@@ -94,7 +89,5 @@
                             }
                         ]
                     }
-                ]
-        }
-    ]
+                ]      
 }

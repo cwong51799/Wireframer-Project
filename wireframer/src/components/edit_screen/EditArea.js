@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ControlGenerator from './controls/ControlGenerator';
+import {Rnd} from 'react-rnd'
+import Button from 'react-materialize/lib/Button';
 
 export default class EditArea extends Component {
     constructor(props){
@@ -8,65 +10,62 @@ export default class EditArea extends Component {
     state = {
         wireframe : this.props.wireframe,
         controlBeingEdited : this.props.controlBeingEdited,
+        updatable : false,
     }
-    // I guess containers should alway's be behind everything else, therefore they must be rendered last.
-    // Ensures that containers are rendered first and behind everything else.
-    // Could add more logic to ths but eh, right now everything beyond containers are up to the order they're placed.
-    /*logicallyOrderControls(){
-        const wireframeControls = this.props.wireframe.controls;
-        wireframeControls.sort((control1, control2)=>{
-            if (control1.type == "container"){
-                let placeholder = control1.key;
-                control1.key = control2.key;
-                control2.key = placeholder;
-                return -1;
-            }
-            else{
-                return 1;
-            }
-        });
-        console.log("Array before fixing");
-        console.table(wireframeControls);
-        this.fixKeys(wireframeControls);
-    }
-    // Set the key of the item to it's index in the array
-    fixKeys(array){
-        for (var i =0;i<array.length;i++){
-            array[i].key = i;
+    updateDimensions = () =>{
+        let wireframe = this.props.wireframe;
+        let dimensionXinput = document.getElementById("dimensionXchange");
+        let dimensionYinput = document.getElementById("dimensionYchange");
+        let newDimensionX = parseInt(dimensionXinput.value);
+        let newDimensionY = parseInt(dimensionYinput.value);
+        // Capped at 1200 X and 1500 Y
+        if (newDimensionX > 5000 || newDimensionX < 1){
+            return;
         }
-        console.log("Array after fixing");
-        console.table(array);
-    }*/
-    // How can I get this area to be centered no matter what?
+        if (newDimensionY > 5000 || newDimensionY < 1){
+            return;
+        }
+        wireframe.dimensionX = newDimensionX;
+        wireframe.dimensionY = newDimensionY;
+        this.setState({
+            wireframe : wireframe,
+            updatable : false,
+        })
+    }
+
+    makeUpdatable = () =>{
+        this.setState({
+            updatable : true,
+        })
+    }
+
     render() {
         const wireframe = this.props.wireframe;
-        const wireframeAttached = (wireframe != null);
+        console.log(wireframe);
         const setControlBeingEdited = this.props.setControlBeingEdited;
         const controlBeingEdited = this.props.controlBeingEdited;
-        if (wireframeAttached) {
-            //this.logicallyOrderControls();
-            return (
-            <div id = "editArea">
-                <div id = "wireframeZone" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
-                        {wireframe.controls.map(function(control) { 
-                            // If it's the control being edited, flag it to be 
-                            return (
-                            <ControlGenerator control ={control} key = {control.key} setControlBeingEdited = {setControlBeingEdited} theChosenControl = {control == controlBeingEdited ? true : false} />
-                            );
-                        }
-                    )}
-                </div>
+        console.log(this.props.preview);
+        //this.logicallyOrderControls();
+        return (
+        <div id = "editArea">
+            {this.props.preview ? <div></div> : <div className = "wireframeDetails">
+                <p className = "wireframeName">{wireframe.name}</p>
+                <p>Width: </p>
+                <input className = "numberInput" type ="number" id ="dimensionXchange" defaultValue = {wireframe.dimensionX} onChange = {this.makeUpdatable}></input>
+                <p>Height: </p>
+                <input className = "numberInput" type ="number" id="dimensionYchange" defaultValue = {wireframe.dimensionY} onChange = {this.makeUpdatable}></input>
+                <p><Button id = "updateBtn" onClick = {this.updateDimensions} disabled = {!this.state.updatable}>Update</Button></p>
+            </div>}
+            <div id = "wireframeZone" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
+                    {wireframe.controls.map(function(control) { 
+                        // If it's the control being edited, flag it to be 
+                        return (
+                        <ControlGenerator control ={control} key = {control.key} setControlBeingEdited = {setControlBeingEdited} theChosenControl = {control == controlBeingEdited ? true : false} />
+                        );
+                    }
+                )}
             </div>
-            )
-        }
-        else{
-            return (
-                <div id = "editArea">
-                    <div id = "wireframeZone">
-                        
-                    </div>
-                </div>
-                )
-        }
+        </div>
+        )
     }
 }

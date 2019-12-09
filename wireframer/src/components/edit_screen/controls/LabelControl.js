@@ -22,6 +22,7 @@ export default class LabelControl extends Component {
         const control = this.props.control;
         control.width = control.width + widthChange;
         control.height = control.height + heightChange;
+        this.setState({});
     }
     render() {
         const control = this.props.control;

@@ -37,12 +37,14 @@ class HomeScreen extends Component {
         const {auth} = this.props;
         var userID= auth.uid;
         const userWireframes = this.state.usersWireframes;
+        // If the name would be a duplicate, do something different.
+        let name = "Wireframe " + (userWireframes.length+1);
         // Push the new wireframe then update the database.
         userWireframes.push({
             controls : [],
-            dimensionX : 1200,
+            dimensionX : 1000,
             dimensionY : 900,
-            name : "Wireframe " + (userWireframes.length+1),
+            name : name,
             key : userWireframes.length
         })
         firestore.collection("users").doc(userID).update({
@@ -51,7 +53,14 @@ class HomeScreen extends Component {
         // Update after adding.
         this.setState({})
     }
-
+    isDuplicateName(usersWireframes, name){
+        for (var i=0;i<usersWireframes.length;i++){
+            if (usersWireframes[i].name == name){
+                return true;
+            }
+        }
+        return false;
+    }
     getWireframeOfName(name){
         const usersWireframes = this.state.usersWireframes;
         for (var i=0;i<usersWireframes.length;i++){
@@ -89,6 +98,7 @@ class HomeScreen extends Component {
         usersWireframes.splice(key, 1);
         // Update the key of the remaining elements
         for (var i = key; i<usersWireframes.length;i++){
+            usersWireframes[i].name = "Wireframe " + (i+1);
             usersWireframes[i].key = usersWireframes[i].key-1;
         }
         // update the database
@@ -108,8 +118,9 @@ class HomeScreen extends Component {
     render() {
         const moveToWireframe = this.state.moveToWireframe;
         const usersWireframes = this.state.usersWireframes;
-        const wireframeSelected = this.state.wireframeSelected;
-        const EditAreaPreview = wireframeSelected != null ? <EditArea wireframe = {wireframeSelected}/> : <div></div>
+        let wireframeSelected = this.state.wireframeSelected;
+        console.log(wireframeSelected);
+        let EditAreaPreview = wireframeSelected != null ? <EditArea wireframe = {wireframeSelected} preview = {true}/> : <div></div>
         if (this.state.refresh){
             return <Redirect to='/' />
         }
@@ -183,7 +194,7 @@ class HomeScreen extends Component {
                         }
                             actions = {[<Button className = "modal-close" flat> Close </Button>, <Button flat className = "modal-close" onClick = {(e)=>this.deleteWireframe(e)}>Confirm</Button>]}> 
                             <p>Are you sure you want to delete {wireframeSelected != null ? wireframeSelected.name : "this wireframe"}? </p>
-                            <p><b>This action is irreversible.</b></p>
+                            <p><b>Deleting a Wireframe will bump the other Wireframe's names down. This action is irreversible.</b></p>
                         </Modal>
                         </div>
                         <Button
@@ -197,7 +208,7 @@ class HomeScreen extends Component {
                         </Button>
                     </div>
                     <div className = "preview">{wireframeSelected != null ? "Preview of " + wireframeSelected.name : ""}</div>
-                    <div className = "wireframePreview" disabled>{EditAreaPreview}</div>
+                    <div className = "wireframePreview" disabled><div className = "center">{EditAreaPreview}</div></div>
                 </div>
             )
         }

@@ -177,7 +177,6 @@ class EditScreen extends Component {
         return (
             <div id = "editScreenParent">
                 <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection createNewControl = {this.createNewControl} saveData = {this.saveData}/></div>
-                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} controlBeingEdited = {this.state.controlBeingEdited} setControlBeingEdited = {this.setControlBeingEdited}/></div>
                 <div id = "propertyEditorDiv" className ="editScreenDiv">
                     {this.state.wireframe == null ? <PropertyEditor
                     /> :
@@ -187,6 +186,7 @@ class EditScreen extends Component {
                     />
                     }
                 </div>
+                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} controlBeingEdited = {this.state.controlBeingEdited} setControlBeingEdited = {this.setControlBeingEdited}/></div>
             </div>
         )
     }

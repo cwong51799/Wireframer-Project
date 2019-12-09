@@ -44,6 +44,7 @@ export default class ContainerControl extends Component {
                 onDragStop = {this.handleDragStop}
                 onResizeStop = {this.handleResizeStop}
                 bounds = "parent"
+                stop-propagation="true"
                 default={{
                     x: control.positionX,
                     y: control.positionY,

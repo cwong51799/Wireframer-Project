@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {Icon, Button, TextInput} from 'react-materialize'
 import { Redirect} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class ControlSelection extends Component {
     state = {
@@ -34,6 +36,7 @@ export default class ControlSelection extends Component {
             wireframeZone.setAttribute("class", "normalZoom");
         }
     }
+    notify = () => toast("The wireframe has been saved.")
     render() {
         if (this.state.closing){
             return <Redirect to="/"></Redirect>
@@ -69,6 +72,7 @@ export default class ControlSelection extends Component {
                         node="button"
                         waves="light"
                         onClick = {(e)=>this.props.saveData(e)}
+                        onClick = {this.notify}
                     >
                         Save
                     </Button>

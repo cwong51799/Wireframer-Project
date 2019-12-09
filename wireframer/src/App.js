@@ -12,6 +12,10 @@ import LoginScreen from './components/login_screen/LoginScreen';
 import HomeScreen from './components/home_screen/HomeScreen';
 import RegisterScreen from './components/register_screen/RegisterScreen';
 import EditScreen from './components/edit_screen/EditScreen';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function App() {
   //const { auth } = this.props;

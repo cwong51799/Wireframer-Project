@@ -142,7 +142,7 @@ class EditScreen extends Component {
                         textSize : 20,
                         backgroundColor : "#FFFFFF",
                         borderColor : "#000000",
-                        borderThickness : 1,
+                        borderThickness : 0,
                         borderRadius : 1,
                         type : "label"
                     })

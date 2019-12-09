@@ -231,7 +231,7 @@ class HomeScreen extends Component {
                         }
                             actions = {[<Button className = "modal-close" flat> Close </Button>, <Button flat className = "modal-close" onClick = {(e)=>this.deleteWireframe(e)}>Confirm</Button>]}> 
                             <p>Are you sure you want to delete {wireframeSelected != null ? wireframeSelected.name : "this wireframe"}? </p>
-                            <p><b>Deleting a Wireframe will bump the other Wireframe's names down. This action is irreversible.</b></p>
+                            <p><b>This action is irreversible.</b></p>
                         </Modal>
                         </div>
                         <Button

@@ -13,27 +13,24 @@ class DatabaseTester extends React.Component {
         const fireStore = getFirestore();
         fireStore.collection('users').get().then(function(querySnapshot){
             querySnapshot.forEach(function(doc) {
-                // MY ACCOUNTS ID, NEVER RESET THIS
-                if (doc.id === "sH8vpcZUIVOe94nwYSuzV0CYOyo2"){
+                // Reset the wireframes of each account
                     fireStore.collection('users').doc(doc.id).update({
                         wireframes : []
                     })
-                }else{
-                    fireStore.collection('users').doc(doc.id).delete();
-                }
             })
         });
     }
 
     handleReset = () => {
         const fireStore = getFirestore();
-        fireStore.collection('users').doc("sH8vpcZUIVOe94nwYSuzV0CYOyo2").update({
-                wireframes : wireframeJson.wireframes
-            }).then(() => {
-                console.log("DATABASE RESET");
-            }).catch((err) => {
-                console.log(err);
-            });
+        fireStore.collection('users').get().then(function(querySnapshot){
+            querySnapshot.forEach(function(doc) {
+                // Reset the wireframes of each account
+                    fireStore.collection('users').doc(doc.id).update({
+                        wireframes : wireframeJson.wireframes
+                    })
+            })
+        });
     }
 
     render() {

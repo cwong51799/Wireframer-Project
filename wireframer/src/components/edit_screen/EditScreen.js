@@ -6,6 +6,7 @@ import { getFirestore } from 'redux-firestore';
 import EditArea from './EditArea';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Redirect} from 'react-router-dom';
 
 
 // EditScreen must be able to know which wireframe it's working on within the total wireframe array such that
@@ -16,9 +17,11 @@ class EditScreen extends Component {
     constructor(props){
         super(props);
         // SCUFFED
-        this.state = {
-            wireframe : this.props.location.state.wireframe,
-            controlBeingEdited : null
+        if (this.props.location.state != undefined){
+            this.state = {
+                wireframe : this.props.location.state.wireframe,
+                controlBeingEdited : null
+            }
         }
         document.body.onkeydown = (e) => {
             // delete
@@ -33,42 +36,28 @@ class EditScreen extends Component {
         const controls = this.state.wireframe.controls;
         controls.splice(controlToRemove.key, 1);
         // Update the key of the remaining elements
-        console.table(controls)
         for (var i = controlToRemove.key; i<controls.length;i++){
             controls[i].key = controls[i].key-1;
         }
-        console.table(controls);
         // reload after deleting
         this.setState({
         
         })
     }
-    // Loads the data in the wireframe, this is hard hard coded just for testing for now
-    loadData(){
-        const firestore = getFirestore();
-        let docRef = firestore.collection("users").doc("HOR6c5mog0FN0mrYU7Pq");
-        let getDoc = docRef.get()
-            .then(doc => {
-                if (!doc.exists) {
-                console.log('No such document!');
-                } else {
-                    this.useThisData(doc.data());
-                }
-            })
-            .catch(err => {
-                console.log('Error getting document', err);
-            });
-    }
-    // Currently just taking the first one that I want. Testing.
-    useThisData(data){
-        
-    }
+
+
     saveData = (e) =>{
         // UPDATE IN THE FIRESTORE AS WELL
         const firestore = getFirestore();
         // Save the updated controls
-        const wireframe = this.state.wireframe();
-        
+        const wireframe = this.state.wireframe;
+        const {auth} = this.props;
+        var userID= auth.uid;
+        const usersWireframes = this.props.location.state.usersWireframes;
+        usersWireframes[wireframe.key] = wireframe;
+        firestore.collection("users").doc(userID).update({
+            wireframes : usersWireframes
+        })
     }
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?
@@ -182,9 +171,12 @@ class EditScreen extends Component {
     // The controlSelection doesn't need to know shit
     render() {
         //console.log("EditScreen Render called.");
+        if (this.state == null){
+            return <Redirect to = "/"></Redirect>
+        }
         return (
             <div id = "editScreenParent">
-                <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection createNewControl = {this.createNewControl}/></div>
+                <div id = "controlSelectionDiv" className ="editScreenDiv"><ControlSelection createNewControl = {this.createNewControl} saveData = {this.saveData}/></div>
                 <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} controlBeingEdited = {this.state.controlBeingEdited} setControlBeingEdited = {this.setControlBeingEdited}/></div>
                 <div id = "propertyEditorDiv" className ="editScreenDiv">
                     {this.state.wireframe == null ? <PropertyEditor

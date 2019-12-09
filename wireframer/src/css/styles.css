@@ -127,3 +127,13 @@ body{
 	box-shadow: 0 0 15px #d35400;
 	text-shadow: 0 0 15px #d35400;
 }
+
+
+.selectedNotification{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.wireframeOptions{
+	padding: 2%;
+}

@@ -141,3 +141,21 @@ button{
     -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
     transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
   }
+
+
+.wireframePreview{
+    position: absolute;
+    left: 18%;
+    padding-top: 1%;
+    pointer-events: none;
+}
+
+.createNewWireframeBtn{
+    background-color: purple;
+}
+
+.preview{
+    padding-top: 2%;
+    font-weight: bold;
+    font-size: 20px;
+}

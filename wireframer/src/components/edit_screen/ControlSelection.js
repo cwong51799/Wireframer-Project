@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
 import {Icon, Button, TextInput} from 'react-materialize'
+import { Redirect} from 'react-router-dom';
+
 export default class ControlSelection extends Component {
+    state = {
+        closing : false
+    }
+    // Sets the state and indicates this needs to be closed.
+    closeWireframe = (e) =>{
+        this.setState({
+            closing : true
+        })
+    }
     render() {
+        if (this.state.closing){
+            return <Redirect to="/"></Redirect>
+        }
         return (
             <div>
                 <div className = "controlsRow1">
@@ -30,6 +44,7 @@ export default class ControlSelection extends Component {
                         flat
                         node="button"
                         waves="light"
+                        onClick = {(e)=>this.props.saveData(e)}
                     >
                         Save
                     </Button>
@@ -38,6 +53,7 @@ export default class ControlSelection extends Component {
                         flat
                         node="button"
                         waves="light"
+                        onClick = {(e)=>this.closeWireframe(e)}
                     >
                         Close
                     </Button>

@@ -17,7 +17,7 @@ class EditScreen extends Component {
     constructor(props){
         super(props);
         // SCUFFED
-        if (this.props.location.state != undefined){
+        if (this.props.location.state !== undefined){
             this.state = {
                 wireframe : this.props.location.state.wireframe,
                 controlBeingEdited : null
@@ -38,11 +38,12 @@ class EditScreen extends Component {
             }
         } 
         document.body.onkeyup = function(e) {
-            if (e.keyCode == 17 || e.keyCode == 91) {
+            if (e.keyCode === 17 || e.keyCode === 91) {
               this.ctrlDown = false;
             };
         };   
     }
+
     duplicateControl(controlToDuplicate){
         const controls = this.state.wireframe.controls;
         let controlCopy = Object.assign({}, controlToDuplicate);
@@ -82,11 +83,19 @@ class EditScreen extends Component {
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?
     setControlBeingEdited = (key,e) =>{
+        e.preventDefault();
         let controlBeingEdited = this.state.wireframe.controls[key];
         this.setState({
             ...this.state,
             controlBeingEdited : controlBeingEdited
         })
+    }
+    deselectControl = (e) =>{
+        if (e.target.id === "wireframeZone"){
+            this.setState({
+                controlBeingEdited : null
+            })
+        }
     }
     handlePropertyChange = (e)=>{
         // Reload this on property change, might be inefficient. Look for a better way.
@@ -174,6 +183,7 @@ class EditScreen extends Component {
                     type : "textfield"
                 })
                 break;
+            default:
         }
         // Update after adding, shouldn't this be automatic?
         this.setState({
@@ -206,7 +216,7 @@ class EditScreen extends Component {
                     />
                     }
                 </div>
-                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} controlBeingEdited = {this.state.controlBeingEdited} setControlBeingEdited = {this.setControlBeingEdited}/></div>
+                <div id = "editAreaDiv" className ="editScreenDiv"><EditArea wireframe = {this.state.wireframe} controlBeingEdited = {this.state.controlBeingEdited} setControlBeingEdited = {this.setControlBeingEdited} deselectControl = {this.deselectControl}/></div>
             </div>
         )
     }

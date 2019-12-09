@@ -19,7 +19,7 @@ export default class ControlSelection extends Component {
             wireframeZone.setAttribute("class", "doubleZoom");
         }
         // If it's at half, make it normal
-        if (className == "halfZoom"){
+        if (className === "halfZoom"){
             wireframeZone.setAttribute("class", "normalZoom");
         }
     }
@@ -30,7 +30,7 @@ export default class ControlSelection extends Component {
             wireframeZone.setAttribute("class", "halfZoom");
         }
         // If it's at half, make it normal
-        if (className == "doubleZoom"){
+        if (className === "doubleZoom"){
             wireframeZone.setAttribute("class", "normalZoom");
         }
     }

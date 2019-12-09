@@ -37,7 +37,7 @@ class DatabaseTester extends React.Component {
     }
 
     render() {
-        const {auth, profile } = this.props;
+        const {profile } = this.props;
         const isAdmin = profile.administrator;
         if (!isAdmin){
             return <Redirect to="/"/>;

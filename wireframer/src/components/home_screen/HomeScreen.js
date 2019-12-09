@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import {Select, Button, Icon, Modal} from 'react-materialize'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
 import { compose } from 'redux';
 import { Redirect} from 'react-router-dom';
-import { firestoreConnect, getFirebase } from 'react-redux-firebase';
+import { firestoreConnect} from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 import WireframeOption from './WireframeOption';
 import EditArea from '../edit_screen/EditArea';
@@ -19,7 +18,7 @@ class HomeScreen extends Component {
         wireframeSelected : null,
         refresh : false,
     }
-
+    randomAdjectives = ["Fluffy","Magnificent","Plant","Patience","Night","Homework"]
     getUsersWireframes(){
         const {auth} = this.props;
         const userID = auth.uid;
@@ -39,14 +38,15 @@ class HomeScreen extends Component {
         var userID= auth.uid;
         const userWireframes = this.state.usersWireframes;
         // If the name would be a duplicate, do something different.
-        let name = "Wireframe " + (userWireframes.length+1);
+        let name = this.randomAdjectives[Math.floor(Math.random() * this.randomAdjectives.length)] + Math.floor(Math.random()*100) + Math.floor(Math.random()*100);
         // Push the new wireframe then update the database.
         userWireframes.push({
             controls : [],
             dimensionX : 1000,
             dimensionY : 900,
             name : name,
-            key : userWireframes.length
+            key : userWireframes.length,
+            lastAccessed : ""
         })
         firestore.collection("users").doc(userID).update({
             wireframes : userWireframes
@@ -54,9 +54,10 @@ class HomeScreen extends Component {
         // Update after adding.
         this.setState({})
     }
+
     isDuplicateName(usersWireframes, name){
         for (var i=0;i<usersWireframes.length;i++){
-            if (usersWireframes[i].name == name){
+            if (usersWireframes[i].name === name){
                 return true;
             }
         }
@@ -86,9 +87,18 @@ class HomeScreen extends Component {
     // if there is a wireframe to move to, it'll move to it.
     // IT'S ONLY GOING TO THE FIRST ONE
     moveToWireframe = (e) =>{
+        const {auth} = this.props;
+        const userID = auth.uid;
+        const firestore = getFirestore();
+        let usersWireframes = this.state.usersWireframes;
         let wireframe = this.state.wireframeSelected;
+        wireframe.lastAccessed = new Date().toISOString();
+        firestore.collection("users").doc(userID).update({
+            wireframes : usersWireframes
+        })
         this.setState({
-            moveToWireframe : wireframe
+            moveToWireframe : wireframe,
+            mostRecentWireframe : wireframe,
         })
     }
     // Same with this
@@ -96,10 +106,16 @@ class HomeScreen extends Component {
         const usersWireframes = this.state.usersWireframes;
         let wireframe = this.state.wireframeSelected;
         let key = wireframe.key;
-        usersWireframes.splice(key, 1);
+        let indexToRemove = -1;
+        // Find what to remove and remove it.
+        for (var i=0;i<usersWireframes.length;i++){
+            if (usersWireframes[i].key === key){
+                indexToRemove = i;
+            }
+        }
+        usersWireframes.splice(indexToRemove, 1);
         // Update the key of the remaining elements
-        for (var i = key; i<usersWireframes.length;i++){
-            usersWireframes[i].name = "Wireframe " + (i+1);
+        for (i = indexToRemove; i<usersWireframes.length;i++){
             usersWireframes[i].key = usersWireframes[i].key-1;
         }
         // update the database
@@ -113,14 +129,31 @@ class HomeScreen extends Component {
             redirect : !this.state.redirect
         });
     }
-
-
+    reorderByAccessDate(wireframes){
+        wireframes.sort(function(item1,item2){
+            if (item1.lastAccessed > item2.lastAccessed){
+                console.log(item1.name + " was accessed more recently than " + item2.name);
+                return -1;
+            }
+            if (item1.lastAccessed < item2.lastAccessed){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        });
+        this.fixKeys(wireframes);
+    }
+    fixKeys(wireframes){
+        for (var i=0;i<wireframes.length;i++){
+            wireframes[i].key = i;
+        }
+    }
 
     render() {
         const moveToWireframe = this.state.moveToWireframe;
-        const usersWireframes = this.state.usersWireframes;
+        let usersWireframes = this.state.usersWireframes;
         let wireframeSelected = this.state.wireframeSelected;
-        console.log(wireframeSelected);
         let EditAreaPreview = wireframeSelected != null ? <EditArea wireframe = {wireframeSelected} preview = {true}/> : <div></div>
         if (this.state.refresh){
             return <Redirect to='/' />
@@ -137,6 +170,9 @@ class HomeScreen extends Component {
                 this.getUsersWireframes();
                 return <div></div>
             }
+            console.log(usersWireframes);
+            this.reorderByAccessDate(usersWireframes);
+            console.log(usersWireframes);
             return (
                 <div className = "homeScreen">
                     <div className = "centerPage">
@@ -163,7 +199,6 @@ class HomeScreen extends Component {
                             outDuration: 250,
                             }
                         }}
-                        value=""
                         >
                         <option value ={false}>Select a Wireframe</option>
                         {usersWireframes.map(wireframe => (
@@ -230,6 +265,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-      { collection: 'todoLists' },
+      { collection: 'wireframes' },
     ]),
 )(HomeScreen);

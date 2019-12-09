@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ControlGenerator from './controls/ControlGenerator';
-import {Rnd} from 'react-rnd'
 import Button from 'react-materialize/lib/Button';
 
 export default class EditArea extends Component {
@@ -33,6 +32,8 @@ export default class EditArea extends Component {
         })
     }
 
+
+
     makeUpdatable = () =>{
         this.setState({
             updatable : true,
@@ -41,10 +42,8 @@ export default class EditArea extends Component {
 
     render() {
         const wireframe = this.props.wireframe;
-        console.log(wireframe);
         const setControlBeingEdited = this.props.setControlBeingEdited;
         const controlBeingEdited = this.props.controlBeingEdited;
-        console.log(this.props.preview);
         //this.logicallyOrderControls();
         return (
         <div id = "editArea">
@@ -56,11 +55,11 @@ export default class EditArea extends Component {
                 <input className = "numberInput" type ="number" id="dimensionYchange" defaultValue = {wireframe.dimensionY} onChange = {this.makeUpdatable}></input>
                 <p><Button id = "updateBtn" onClick = {this.updateDimensions} disabled = {!this.state.updatable}>Update</Button></p>
             </div>}
-            <div id = "wireframeZone" className = "normalZoom" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
+            <div id = "wireframeZone" onClick = {(e)=>this.props.deselectControl(e)} className = "normalZoom" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
                     {wireframe.controls.map(function(control) { 
                         // If it's the control being edited, flag it to be 
                         return (
-                        <ControlGenerator control ={control} key = {control.key} setControlBeingEdited = {setControlBeingEdited} theChosenControl = {control == controlBeingEdited ? true : false} />
+                        <ControlGenerator control ={control} key = {control.key} setControlBeingEdited = {setControlBeingEdited} theChosenControl = {control === controlBeingEdited ? true : false} />
                         );
                     }
                 )}

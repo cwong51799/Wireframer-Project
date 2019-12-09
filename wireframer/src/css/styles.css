@@ -117,3 +117,13 @@ body{
 		background-position: 0 450px;
 	}
 }
+
+.deleteWireframeBtn{
+	background-color: #dc235d
+}
+
+.deleteWireframeBtn.hover{
+	background-color: #dc235d;
+	box-shadow: 0 0 15px #d35400;
+	text-shadow: 0 0 15px #d35400;
+}

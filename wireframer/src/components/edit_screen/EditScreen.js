@@ -4,8 +4,15 @@ import ControlSelection from './ControlSelection'
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 import EditArea from './EditArea';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-export default class EditScreen extends Component {
+
+// EditScreen must be able to know which wireframe it's working on within the total wireframe array such that
+// it can update / delete it. I'll probably have to do this by working around with the keys. Maybe pass the key and all the wireframes down as a prop.
+// Maybe theres a more efficient way.
+
+class EditScreen extends Component {
     constructor(props){
         super(props);
         // SCUFFED
@@ -54,16 +61,14 @@ export default class EditScreen extends Component {
     }
     // Currently just taking the first one that I want. Testing.
     useThisData(data){
-        this.setState({
-            wireframe :  data.wireframes[0]
-        });
+        
     }
     saveData = (e) =>{
         // UPDATE IN THE FIRESTORE AS WELL
         const firestore = getFirestore();
         // Save the updated controls
         const wireframe = this.state.wireframe();
-
+        
     }
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?
@@ -169,9 +174,7 @@ export default class EditScreen extends Component {
     // Working towards getting the delete control
     deleteControl = (e) =>{
         const controls = this.state.wireframe.controls;
-        console.table(controls);
         controls.remove(this.state.controlBeingEdited);
-        console.table(controls);
     }
 
     // The PropertyEditor only needs to know what control it's working on.
@@ -192,8 +195,19 @@ export default class EditScreen extends Component {
                     />
                     }
                 </div>
-                <button onClick = {(e)=>this.loadData()}> LOAD FROM DATABASE</button>
             </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    };
+};
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+      { collection: 'todoLists' },
+    ]),
+)(EditScreen);

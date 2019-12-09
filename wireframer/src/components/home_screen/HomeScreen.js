@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Select, Button, Icon} from 'react-materialize'
+import {Select, Button, Icon, Modal} from 'react-materialize'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { compose } from 'redux';
@@ -15,6 +15,7 @@ class HomeScreen extends Component {
     state = {
         usersWireframes : null,
         moveToWireframe : null,
+        refresh : false,
     }
 
     getUsersWireframes(){
@@ -64,21 +65,49 @@ class HomeScreen extends Component {
 
     // So the idea is that this updates the state and in the render method theres a check where
     // if there is a wireframe to move to, it'll move to it.
+    // IT'S ONLY GOING TO THE FIRST ONE
     moveToWireframe = (e) =>{
-        let nameOfSelectedWireframe = document.getElementById("wireframeSelector").value;
+        let nameOfSelectedWireframe = document.getElementById("wireframeSelector").M_FormSelect.input.value;
+        console.log("Moving to wireframe " + nameOfSelectedWireframe);
         let wireframe = this.getWireframeOfName(nameOfSelectedWireframe);
         this.setState({
             moveToWireframe : wireframe
         })
     }
+    // Same with this
+    deleteWireframe = (e) =>{
+        const usersWireframes = this.state.usersWireframes;
+        let nameOfSelectedWireframe = document.getElementById("wireframeSelector").M_FormSelect.input.value;
+        console.log("Delete wireframe called to delete " + nameOfSelectedWireframe);
+        let wireframe = this.getWireframeOfName(nameOfSelectedWireframe);
+        let key = wireframe.key;
+        usersWireframes.splice(key, 1);
+        // Update the key of the remaining elements
+        for (var i = key; i<usersWireframes.length;i++){
+            usersWireframes[i].key = usersWireframes[i].key-1;
+        }
+        // update the database
+        const {auth} = this.props;
+        const userID = auth.uid;
+        const firestore = getFirestore();
+        firestore.collection('users').doc(userID).update({
+            wireframes : usersWireframes
+        })
+        this.setState({
+            redirect : true
+        });
+    }
 
     render() {
         const moveToWireframe = this.state.moveToWireframe;
+        const usersWireframes = this.state.usersWireframes;
+        if (this.state.refresh){
+            return <Redirect to='/' />
+        }
         if (moveToWireframe != null){
             return <Redirect to ={{pathname: "/editScreen", state : {wireframe : moveToWireframe}}}></Redirect>
         }
         const {auth} = this.props;
-        const usersWireframes = this.state.usersWireframes;
         // Need to try to map each wireframe to an option.
         // Need to disable the MOVE-TO button if there are no wireframes made yet.
         if (auth.uid){
@@ -110,7 +139,7 @@ class HomeScreen extends Component {
                         outDuration: 250,
                         }
                     }}
-                    value=""
+                    value="sss"
                     >
                     {usersWireframes.map(wireframe => (
                         <WireframeOption wireframe = {wireframe} key = {wireframe.key}></WireframeOption>
@@ -136,6 +165,15 @@ class HomeScreen extends Component {
                         >
                         Create a new wireframe!
                     </Button>
+                    <Modal header="Delete Wireframe" trigger={
+                        <Button className ="deleteWireframeBtn" waves="red" style={{marginRight: '5px'}}>
+                            DELETE WIREFRAME
+                        </Button>
+                    }
+                        actions = {[<Button className = "modal-close" flat> Close </Button>, <Button flat className = "modal-close" onClick = {(e)=>this.deleteWireframe(e)}>Confirm</Button>]}> 
+                        <p>Are you sure you want to delete this wireframe? </p>
+                        <p><b>This action is irreversible.</b></p>
+                    </Modal>
                 </div>
             )
         }

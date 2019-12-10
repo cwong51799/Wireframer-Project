@@ -80,7 +80,7 @@
                                 "width" : 400,
                                 "height" : 400,
                                 "text" : "I'm a wireframe with one big control!",
-                                "textSize" : 12,
+                                "textSize" : 50,
                                 "backgroundColor" : "#d12333",
                                 "borderColor" : "#1100ff",
                                 "borderThickness" : 5,

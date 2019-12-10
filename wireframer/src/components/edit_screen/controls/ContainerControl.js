@@ -14,7 +14,7 @@ export default class ContainerControl extends Component {
     }
     // Every control knows it's last possibly new positionX and Y.
     handleDragStop = (e, data) =>{
-        const control = this.state.control;
+        const control = this.props.control;
         control.positionX = data.x;
         control.positionY = data.y;
     }
@@ -27,7 +27,7 @@ export default class ContainerControl extends Component {
         this.setState({});
     }
     render() {
-        const control = this.state.control;
+        const control = this.props.control;
         const style = {
             backgroundColor : control.backgroundColor,
             borderWidth : control.borderThickness + "px " + control.borderThickness+"px",

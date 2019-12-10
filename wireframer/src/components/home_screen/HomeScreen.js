@@ -7,6 +7,8 @@ import { firestoreConnect} from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 import WireframeOption from './WireframeOption';
 import EditArea from '../edit_screen/EditArea';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class HomeScreen extends Component {
@@ -18,7 +20,8 @@ class HomeScreen extends Component {
         wireframeSelected : null,
         refresh : false,
     }
-    randomAdjectives = ["Fluffy","Magnificent","Plant","Patience","Night","Homework"]
+    randomAdjectives = ["Fluffy","Pillow","Plant","Patience","Night","Homework","Costco","Salty","Baboon","Mirror","BigFan",
+                        "Clock","Water","Doggo","Tree"]
     getUsersWireframes(){
         const {auth} = this.props;
         const userID = auth.uid;
@@ -52,6 +55,7 @@ class HomeScreen extends Component {
             wireframes : userWireframes
         })
         // Update after adding.
+        toast("A new wireframe named " + name + " has been created.");
         this.setState({
             wireframeSelected : userWireframes[userWireframes.length-1]
         })
@@ -127,9 +131,12 @@ class HomeScreen extends Component {
         firestore.collection('users').doc(userID).update({
             wireframes : usersWireframes
         })
+        toast(this.state.wireframeSelected.name + " has been deleted.")
         this.setState({
+            wireframeSelected : null,
             redirect : !this.state.redirect
         });
+
     }
     reorderByAccessDate(wireframes){
         wireframes.sort(function(item1,item2){
@@ -156,7 +163,6 @@ class HomeScreen extends Component {
         const moveToWireframe = this.state.moveToWireframe;
         let usersWireframes = this.state.usersWireframes;
         let wireframeSelected = this.state.wireframeSelected;
-        console.log(wireframeSelected);
         let EditAreaPreview = wireframeSelected != null ? <EditArea wireframe = {wireframeSelected} preview = {true}/> : <div></div>
         if (this.state.refresh){
             return <Redirect to='/' />
@@ -178,7 +184,6 @@ class HomeScreen extends Component {
                 <div className = "homeScreen">
                     <div className = "centerPage">
                         <Select
-                        onChange = {function noRefCheck(){}}
                         onChange = {(e)=>this.handleSelectChange(e)}
                         defaultValue = {wireframeSelected != null ? wireframeSelected.name : ""}
                         id = "wireframeSelector"

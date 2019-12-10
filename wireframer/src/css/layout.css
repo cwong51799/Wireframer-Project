@@ -118,13 +118,20 @@ button{
     padding: 7%;
 }
 
-.containerControl{}
+.containerControl{
+    text-align: center;
+}
 
 /* Add Padding After You figure out positioning
 .labelControl{
     padding: 10px;
 }
 */
+
+.backgroundClearBtn{
+    width: 30%;
+    margin-top: 5%;
+}
 
 .containerControlOption, .labelControlOption,.buttonControlOption,.textFieldControlOption {
     vertical-align: middle;
@@ -191,4 +198,13 @@ button{
 
 .brand-logo{
     
+}
+
+#containerDiv {
+    text-align:center;
+  }
+  
+#innerDiv {
+margin: 0 auto;
+text-align: left;
 }

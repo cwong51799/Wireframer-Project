@@ -7,6 +7,8 @@ import EditArea from './EditArea';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Redirect} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // EditScreen must be able to know which wireframe it's working on within the total wireframe array such that
@@ -23,26 +25,22 @@ class EditScreen extends Component {
                 controlBeingEdited : null
             }
         }
-        this.ctrlDown = false;
+        
         document.body.onkeydown = (e) => {
-            if (this.state.controlBeingEdited != null){
-                if (e.keyCode === 17 || e.keyCode === 91){
-                    this.ctrlDown = true;
-                }
-                if (e.keyCode === 46){
-                    this.removeControl(this.state.controlBeingEdited);  
-                }
-                if (this.ctrlDown && e.keyCode === 68){
-                    this.duplicateControl(this.state.controlBeingEdited);
+            if (e.ctrlKey){
+                if (this.state.controlBeingEdited != null){
+                    if (e.keyCode === 68){
+                        this.duplicateControl(this.state.controlBeingEdited);
+                    }
                 }
             }
-        } 
-        document.body.onkeyup = function(e) {
-            if (e.keyCode === 17 || e.keyCode === 91) {
-              this.ctrlDown = false;
-            };
-        };   
-    }
+            else if(e.keyCode === 46){
+                this.removeControl(this.state.controlBeingEdited);  
+            }
+        }
+    } 
+
+
 
     duplicateControl(controlToDuplicate){
         const controls = this.state.wireframe.controls;
@@ -79,6 +77,7 @@ class EditScreen extends Component {
         firestore.collection("users").doc(userID).update({
             wireframes : usersWireframes
         })
+        toast("The wireframe has been saved.");
     }
     // Takes in the control's key, which should match the index of the array
     // This key thing depends on the key matching the index of the array, is that reliable?

@@ -3,6 +3,7 @@ import {TextInput} from 'react-materialize'
 //https://casesandberg.github.io/react-color/  --v
 import { SliderPicker } from 'react-color';
 import { getFirestore } from 'redux-firestore';
+import Button from 'react-materialize/lib/Button';
 
 
 
@@ -15,7 +16,7 @@ export default class PropertyEditor extends Component {
     // Once map state to props is working, set state won't be necessary and I can just update the database.
     // Maybe add the option to wipe background color.
     handleChange = (e) => {
-        if (this.props.controlToEdit === undefined){
+        if (this.props.controlToEdit === null){
             return;
         }
         const {target} = e;
@@ -49,19 +50,23 @@ export default class PropertyEditor extends Component {
             })
         }
     }
-    handleBackgroundColorChange = (color, e) =>{
-        if (this.props.controlToEdit === undefined){
+    handleBackgroundColorChange = (color) =>{
+        if (this.props.controlToEdit === null){
             return;
         }
         const control = this.props.controlToEdit;
-        control.backgroundColor = color.hex;
+        if (color.hex === undefined){
+            control.backgroundColor = "#FFFFFF"
+        }else{
+            control.backgroundColor = color.hex;
+        }
         this.props.handlePropertyChange();
         this.setState({
             control : control
         })
     }
-    handleBorderColorChange = (color, e) =>{
-        if (this.props.controlToEdit === undefined){
+    handleBorderColorChange = (color) =>{
+        if (this.props.controlToEdit === null){
             return;
         }
         const control = this.props.controlToEdit;
@@ -70,6 +75,10 @@ export default class PropertyEditor extends Component {
         this.setState({
             control : control
         })
+    }
+
+    setWhiteBackground = ()=>{
+        this.handleBackgroundColorChange("#FFFFFF");
     }
     render() {
         //console.log("PropertyEditor Render called.");
@@ -86,6 +95,7 @@ export default class PropertyEditor extends Component {
                 <div className ="property">
                 Background:
                 <SliderPicker color = {controlSelected ? control.backgroundColor : "white"} id = "backgroundColor" onChange={this.handleBackgroundColorChange}/>
+                <Button className = "backgroundClearBtn" flat onClick = {this.setWhiteBackground}>Clear</Button>
                 </div>
                 <div className ="property">
                 Border Color:

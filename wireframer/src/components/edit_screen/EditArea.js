@@ -32,19 +32,21 @@ export default class EditArea extends Component {
         })
     }
 
-
-
     makeUpdatable = () =>{
         this.setState({
             updatable : true,
         })
     }
-
+    // Bug occurs when changing the array and a KEY and TYPE matches between the old/new
     render() {
         const wireframe = this.props.wireframe;
+        //console.table(this.state.wireframe.controls);
         const setControlBeingEdited = this.props.setControlBeingEdited;
         const controlBeingEdited = this.props.controlBeingEdited;
         //this.logicallyOrderControls();
+        // states not changing on load!!!!
+        //console.log("State wireframe : " + this.state.wireframe.name);
+        //console.log("Props wireframe : " + this.props.wireframe.name);
         return (
         <div id = "editArea">
             {this.props.preview ? <div></div> : <div className = "wireframeDetails">
@@ -56,7 +58,7 @@ export default class EditArea extends Component {
                 <p><Button id = "updateBtn" onClick = {this.updateDimensions} disabled = {!this.state.updatable}>Update</Button></p>
             </div>}
             <div id = "wireframeZone" onClick = {(e)=>this.props.deselectControl(e)} className = "normalZoom" style = {{width : wireframe.dimensionX, height: wireframe.dimensionY}}>
-                    {wireframe.controls.map(function(control) { 
+                    {this.props.wireframe.controls.map(function(control) { 
                         // If it's the control being edited, flag it to be 
                         return (
                         <ControlGenerator control ={control} key = {control.key} setControlBeingEdited = {setControlBeingEdited} theChosenControl = {control === controlBeingEdited ? true : false} />

@@ -187,13 +187,16 @@ button{
 
 .normalZoom{
     zoom : 1;
+    overflow: scroll;
 }
 
 .doubleZoom{
     zoom : 2;
+    overflow: scroll;
 }
 .halfZoom{
     zoom : .5;
+    overflow: scroll;
 }
 
 .brand-logo{

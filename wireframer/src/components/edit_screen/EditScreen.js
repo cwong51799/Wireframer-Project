@@ -120,7 +120,7 @@ class EditScreen extends Component {
                     width : 200,
                     height : 100,
                     text : "",
-                    textSize : 12,
+                    textSize : 50,
                     backgroundColor : "#FFFFFF",
                     borderColor : "#000000",
                     borderThickness : 5,

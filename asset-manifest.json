@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/WireframerDeployed/static/css/main.81aa23fd.chunk.css",
+    "main.js": "/WireframerDeployed/static/js/main.c806991d.chunk.js",
+    "main.js.map": "/WireframerDeployed/static/js/main.c806991d.chunk.js.map",
+    "runtime-main.js": "/WireframerDeployed/static/js/runtime-main.eae140ef.js",
+    "runtime-main.js.map": "/WireframerDeployed/static/js/runtime-main.eae140ef.js.map",
+    "static/css/2.5dbdccff.chunk.css": "/WireframerDeployed/static/css/2.5dbdccff.chunk.css",
+    "static/js/2.57b71432.chunk.js": "/WireframerDeployed/static/js/2.57b71432.chunk.js",
+    "static/js/2.57b71432.chunk.js.map": "/WireframerDeployed/static/js/2.57b71432.chunk.js.map",
+    "index.html": "/WireframerDeployed/index.html",
+    "precache-manifest.af6baf2c9a01bed5b3147d848bc0d5fa.js": "/WireframerDeployed/precache-manifest.af6baf2c9a01bed5b3147d848bc0d5fa.js",
+    "service-worker.js": "/WireframerDeployed/service-worker.js",
+    "static/css/2.5dbdccff.chunk.css.map": "/WireframerDeployed/static/css/2.5dbdccff.chunk.css.map",
+    "static/css/main.81aa23fd.chunk.css.map": "/WireframerDeployed/static/css/main.81aa23fd.chunk.css.map",
+    "static/js/2.57b71432.chunk.js.LICENSE": "/WireframerDeployed/static/js/2.57b71432.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eae140ef.js",
+    "static/css/2.5dbdccff.chunk.css",
+    "static/js/2.57b71432.chunk.js",
+    "static/css/main.81aa23fd.chunk.css",
+    "static/js/main.c806991d.chunk.js"
+  ]
+}

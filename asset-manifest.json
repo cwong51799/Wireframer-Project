@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/WireframerDeployed/static/css/main.81aa23fd.chunk.css",
-    "main.js": "/WireframerDeployed/static/js/main.c806991d.chunk.js",
-    "main.js.map": "/WireframerDeployed/static/js/main.c806991d.chunk.js.map",
-    "runtime-main.js": "/WireframerDeployed/static/js/runtime-main.eae140ef.js",
-    "runtime-main.js.map": "/WireframerDeployed/static/js/runtime-main.eae140ef.js.map",
-    "static/css/2.5dbdccff.chunk.css": "/WireframerDeployed/static/css/2.5dbdccff.chunk.css",
-    "static/js/2.57b71432.chunk.js": "/WireframerDeployed/static/js/2.57b71432.chunk.js",
-    "static/js/2.57b71432.chunk.js.map": "/WireframerDeployed/static/js/2.57b71432.chunk.js.map",
-    "index.html": "/WireframerDeployed/index.html",
-    "precache-manifest.af6baf2c9a01bed5b3147d848bc0d5fa.js": "/WireframerDeployed/precache-manifest.af6baf2c9a01bed5b3147d848bc0d5fa.js",
-    "service-worker.js": "/WireframerDeployed/service-worker.js",
-    "static/css/2.5dbdccff.chunk.css.map": "/WireframerDeployed/static/css/2.5dbdccff.chunk.css.map",
-    "static/css/main.81aa23fd.chunk.css.map": "/WireframerDeployed/static/css/main.81aa23fd.chunk.css.map",
-    "static/js/2.57b71432.chunk.js.LICENSE": "/WireframerDeployed/static/js/2.57b71432.chunk.js.LICENSE"
+    "main.css": "/Wireframer/static/css/main.81aa23fd.chunk.css",
+    "main.js": "/Wireframer/static/js/main.a84171d1.chunk.js",
+    "main.js.map": "/Wireframer/static/js/main.a84171d1.chunk.js.map",
+    "runtime-main.js": "/Wireframer/static/js/runtime-main.7af2b8c1.js",
+    "runtime-main.js.map": "/Wireframer/static/js/runtime-main.7af2b8c1.js.map",
+    "static/css/2.5dbdccff.chunk.css": "/Wireframer/static/css/2.5dbdccff.chunk.css",
+    "static/js/2.f48e9e34.chunk.js": "/Wireframer/static/js/2.f48e9e34.chunk.js",
+    "static/js/2.f48e9e34.chunk.js.map": "/Wireframer/static/js/2.f48e9e34.chunk.js.map",
+    "index.html": "/Wireframer/index.html",
+    "precache-manifest.90d66efb55bf12412c4fe64eda6837fe.js": "/Wireframer/precache-manifest.90d66efb55bf12412c4fe64eda6837fe.js",
+    "service-worker.js": "/Wireframer/service-worker.js",
+    "static/css/2.5dbdccff.chunk.css.map": "/Wireframer/static/css/2.5dbdccff.chunk.css.map",
+    "static/css/main.81aa23fd.chunk.css.map": "/Wireframer/static/css/main.81aa23fd.chunk.css.map",
+    "static/js/2.f48e9e34.chunk.js.LICENSE": "/Wireframer/static/js/2.f48e9e34.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.eae140ef.js",
+    "static/js/runtime-main.7af2b8c1.js",
     "static/css/2.5dbdccff.chunk.css",
-    "static/js/2.57b71432.chunk.js",
+    "static/js/2.f48e9e34.chunk.js",
     "static/css/main.81aa23fd.chunk.css",
-    "static/js/main.c806991d.chunk.js"
+    "static/js/main.a84171d1.chunk.js"
   ]
 }

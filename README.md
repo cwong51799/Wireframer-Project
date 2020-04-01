@@ -3,11 +3,11 @@ To test out this website, navigate to the directory and type the following comma
 
 Install the node packages.
 
-1. 'npm install'
+1. `npm install`
 
 Deploy the website locally.
 
-2. 'npm start'
+2. `npm start`
 
 
 Login with the test account I setup:

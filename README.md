@@ -1,4 +1,4 @@
-To test out this website, navigate to the directory and type the following commands into the terminal:
+To test out this website, clone this repository, navigate to the directory and type the following commands into the terminal:
 
 
 Install the node packages.

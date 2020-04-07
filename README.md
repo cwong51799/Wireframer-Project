@@ -1,4 +1,7 @@
-To test out this website, clone this repository, navigate to the directory and type the following commands into the terminal:
+To test this website out on my demo site, visit https://cwong51799.github.io/wireframer
+
+
+To test out this website locally, clone this repository, navigate to the directory and type the following commands into the terminal:
 
 
 Install the node packages.

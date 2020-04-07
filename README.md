@@ -14,7 +14,7 @@ Login with the test account I setup:
 ```
 Email: wireframetester@gmail.com
 
-Password: makeawireframe!
+Password: makeawireframer!
 ```
 
 Enjoy!
